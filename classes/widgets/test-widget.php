@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly.
  *
  * @since 1.0.0
  */
-class ANONY_Extension_Test_Widget extends \Elementor\Widget_Base {
+class ANONY_Extension_Elements_Widget extends \Elementor\Widget_Base {
 
 	/**
 	 * Get widget name.

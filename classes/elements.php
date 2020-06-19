@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly.
  *
  * @since 1.0.0
  */
-final class ANONY_Extension_Test {
+final class ANONY_Extension_Elements {
 
 	/**
 	 * Plugin Version
@@ -46,7 +46,7 @@ final class ANONY_Extension_Test {
 	 * @access private
 	 * @static
 	 *
-	 * @var ANONY_Extension_Test The single instance of the class.
+	 * @var ANONY_Extension_Elements The single instance of the class.
 	 */
 	private static $_instance = null;
 
@@ -60,7 +60,7 @@ final class ANONY_Extension_Test {
 	 * @access public
 	 * @static
 	 *
-	 * @return ANONY_Extension_Test An instance of the class.
+	 * @return ANONY_Extension_Elements An instance of the class.
 	 */
 	public static function instance() {
 
@@ -250,7 +250,7 @@ final class ANONY_Extension_Test {
 		require_once( ANOEL_WIDGETS_ClASSES . '/test-widget.php' );
 
 		// Register widget
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \ANONY_Extension_Test_Widget() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \ANONY_Extension_Elements_Widget() );
 
 	}
 
@@ -269,7 +269,7 @@ final class ANONY_Extension_Test {
 		require_once( ANOEL_CONTROLS_ClASSES . '/test.php' );
 
 		// Register control
-		\Elementor\Plugin::$instance->controls_manager->register_control( 'control-type-', new \ANONY_Extension_Test_Control() );
+		\Elementor\Plugin::$instance->controls_manager->register_control( 'control-type-', new \ANONY_Extension_Elements_Control() );
 		*/
 
 	}

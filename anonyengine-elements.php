@@ -21,5 +21,5 @@ define('ANOEL_DIR', wp_normalize_path(plugin_dir_path( __FILE__ )));
 
 require_once( ANOEL_DIR . 'config.php');
 
-ANONY_Extension_Test::instance();
+ANONY_Extension_Elements::instance();
 
