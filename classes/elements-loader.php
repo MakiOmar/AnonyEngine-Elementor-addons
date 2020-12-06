@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly.
  *
  * @since 1.0.0
  */
-final class ANONY_Extension_Elements {
+final class ANONY_Extension_Elements_Loader {
 
 	/**
 	 * Plugin Version
@@ -82,9 +82,99 @@ final class ANONY_Extension_Elements {
 
 		add_action( 'init', [ $this, 'i18n' ] );
 		add_action( 'plugins_loaded', [ $this, 'init' ] );
+		add_action( 'elementor/editor/before_enqueue_scripts', [ $this, '_scripts' ] );
+		add_action( 'elementor/frontend/after_register_scripts', [ $this, '_scripts' ] );
+		add_action( 'elementor/editor/before_enqueue_styles', [ $this, '_styles' ] );
+		add_action( 'elementor/frontend/after_register_styles', [ $this, '_styles' ] );
+	}
+	
+	
+	/**
+	 * Register widgets style
+	 */
+	public function _styles(){
+			
+		$styles = array(
+			'owl-menu' => 'owl-menu',
+			'posts-grid' => 'posts-grid',
+			'slick-vtext' => 'slick-vtext-slider',
+		);
+			
+		$styles_libs = [
+			'circle' => 'circle',
+			'slick' => 'slick',
+			'heapshot' => 'heapshot',
+			'owl.carousel' => 'owl.carousel.min',
+			'font-awesome-5-all' => 'all',
+		];
 		
+		$styles = array_merge($styles, $styles_libs);
+
+		foreach($styles as $style => $file_name){
+			
+			$handle = in_array($style, array_keys($styles_libs)) ? $style : 'anoel-' . $style;
+			
+			wp_register_style( 
+				$handle, 
+				ANOEL_URI . 'assets/css/'.$file_name.'.css', 
+				false,
+				filemtime(
+					wp_normalize_path(ANOEL_DIR . 'assets/css/'.$file_name.'.css' )
+				) 
+			);
+		}
 
 	}
+	
+	/**
+	 * Register widgets scripts
+	 */
+	public function _scripts(){
+		
+		wp_enqueue_script( 'jquery' );
+		
+		$scripts = array(
+			'slick-vtext' => 'slick-vtext-slider',
+			'headpshot-init' => 'headpshot-init',
+		);
+		
+		$libs_scripts = [
+			'circle' => 'circle',
+			'slick' => 'slick.min',
+			'heapshot' => 'jquery.heapshot',
+			'imagesloaded' => 'jquery.imagesloaded.min',
+			'jQueryRotate' => 'jQueryRotate.min',
+			'owl.carousel' => 'owl.carousel.min'
+		];
+		
+		$scripts = array_merge($scripts, $libs_scripts);
+
+		foreach($scripts as $script => $file_name){
+
+			
+			$handle = in_array($script, array_keys($libs_scripts) ) ? $script : 'anoel-' . $script;
+			
+			if ($script == 'slick-vtext') {
+				$deps = ['jquery', 'slick'];
+			}else{
+				$deps = ['jquery'];
+			}
+			$registered = wp_enqueue_script( 
+				$handle , 
+				ANOEL_URI . 'assets/js/'.$file_name.'.js' ,
+				$deps,
+				filemtime(
+					wp_normalize_path(ANOEL_DIR . 'assets/js/'.$file_name.'.js' )
+				), 
+				true 
+			);
+			
+			
+		}
+		
+		
+	}
+	
 
 	/**
 	 * Load Textdomain
@@ -100,8 +190,6 @@ final class ANONY_Extension_Elements {
 	public function i18n() {
 
 		load_plugin_textdomain( ANOEL_TEXTDOM );
-		
-		
 
 	}
 
@@ -245,12 +333,26 @@ final class ANONY_Extension_Elements {
 	 * @access public
 	 */
 	public function init_widgets() {
+		
 
-		// Include Widget files
-		require_once( ANOEL_WIDGETS_ClASSES . '/test-widget.php' );
-
-		// Register widget
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \ANONY_Extension_Elements_Widget() );
+		$widgets = [
+		
+		//'ANONY_Extension_Oembed',
+		//'ANONY_Extension_Simple_Content',
+		//'ANONY_Extension_Repeater',
+		'ANONY_Extension_Vertical_Text_Slider'
+			
+		
+		];
+		
+		foreach ($widgets as $widget) {
+			if (class_exists($widget)) {
+				
+				// Register widget
+				\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new $widget() );
+			}
+		}
+		
 
 	}
 

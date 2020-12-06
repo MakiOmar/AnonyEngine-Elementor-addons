@@ -1,0 +1,53 @@
+.anony-menu-owl-carousel .owl-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.anony-menu-owl-carousel button.owl-prev i, button.owl-next i{
+    font-size: 60px;
+}
+
+.anony-menu-owl-carousel .owl-stage-outer .owl-nav{
+    position: absolute;
+}
+
+.anony-menu-owl-carousel .owl-nav div{
+    width: 35px;
+    position: absolute;
+    top: 50%;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    border:0px solid black;
+}
+.anony-menu-owl-carousel .owl-prev { 
+   left: -35px;
+}
+
+.anony-menu-owl-carousel .owl-next {
+    right: -35px;
+}
+
+.anony-menu-owl-carousel .category-icon-wrapper{
+    height: 50px;
+    max-width: 50px;
+    padding: 5px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.anony-menu-owl-carousel .category-icon{
+    max-height: 40px;
+}
+.anony-menu-owl-carousel .owl-item a{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
+@media only screen and  (max-width: 1024px){
+    .anony-menu-owl-carousel .owl-item a{
+        flex-direction: column;
+    }
+}

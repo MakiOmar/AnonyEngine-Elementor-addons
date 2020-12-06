@@ -1,0 +1,10 @@
+ul.anoshc-slick-vtext{
+	margin: 0;
+	max-height: 36px;
+	overflow: hidden;
+}
+
+ul.anoshc-slick-vtext li{
+	color: #fff;
+	list-style-type: none
+}

@@ -20,6 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly.
 define('ANOEL_DIR', wp_normalize_path(plugin_dir_path( __FILE__ )));
 
 require_once( ANOEL_DIR . 'config.php');
+//require_once( ANOEL_DIR . 'functions/scripts.php');
 
-ANONY_Extension_Elements::instance();
+ANONY_Extension_Elements_Loader::instance();
 
