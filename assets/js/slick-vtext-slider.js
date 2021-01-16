@@ -11,7 +11,7 @@
 		  autoplay: true,
 		  autoplaySpeed: 3000,
 		  speed: 300,
-		  arrows: false
+		  arrows: false,
 		});
 	}
 	

@@ -313,7 +313,7 @@ class ANONY_Extension_Vertical_Text_Slider extends \Elementor\Widget_Base {
 		
 		#>
 		
-		<ul class="anoshc-slick-vtext">
+		<div class="anoshc-slick-vtext">
 			
 			<# _.each( settings.vertical_slider_list, function( item, index ) {
 				
@@ -321,11 +321,11 @@ class ANONY_Extension_Vertical_Text_Slider extends \Elementor\Widget_Base {
 			
 			 #>
 			
-				<li>{{{ iconsHTML[ index ].value }}}{{{ item.item_content }}}</li>
+				<p>{{{ iconsHTML[ index ].value }}}{{{ item.item_content }}}</p>
 			
 			<# } ); #>
 			
-		</ul>
+		</div>
 			
 		<# } #>
 		
