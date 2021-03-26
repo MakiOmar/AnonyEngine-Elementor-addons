@@ -2,11 +2,11 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly.
 ?>
 
-<div class="anoshc-slick-vtext">
+<div <?= $this->get_render_attribute_string( 'vertical_slider_list' ); ?>>
 	
-	<?php foreach ($data as $item) : extract($item) ?>
+	<?php foreach ($data as $item) : extract($item); ?>
 		
-		<p><?php \Elementor\Icons_Manager::render_icon( $content_icon, [ 'aria-hidden' => 'true' ] );?> <?= $content ?></p>
+		<span <?= $this->get_render_attribute_string( 'vertical_slider_list_item' ); ?>><?php \Elementor\Icons_Manager::render_icon( $content_icon, [ 'aria-hidden' => 'true' ] );?> <?= $content ?></span>
 		
 	<?php endforeach ?>
 				

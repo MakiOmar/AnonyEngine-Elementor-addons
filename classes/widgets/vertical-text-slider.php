@@ -178,6 +178,56 @@ class ANONY_Extension_Vertical_Text_Slider extends \Elementor\Widget_Base {
 					'title_field' => '{{{ elementor.helpers.renderIcon( this, content_icon, {}, "i", "panel" ) || \'<i class="{{ content_icon }}" aria-hidden="true"></i>\' }}} {{{ item_content }}}',
 				]
 			);
+			
+			$this->add_responsive_control(
+				'align',
+				[
+					'label' => __( 'Alignment', 'elementor' ),
+					'type' => \Elementor\Controls_Manager::CHOOSE,
+					'options' => [
+						'left' => [
+							'title' => __( 'Left', 'elementor' ),
+							'icon' => 'eicon-text-align-left',
+						],
+						'center' => [
+							'title' => __( 'Center', 'elementor' ),
+							'icon' => 'eicon-text-align-center',
+						],
+						'right' => [
+							'title' => __( 'Right', 'elementor' ),
+							'icon' => 'eicon-text-align-right',
+						],
+					],
+					'default' => '',
+					'selectors' => [
+						'{{WRAPPER}} span.slick-slide' => 'justify-content: {{VALUE}};',
+					],
+				]
+			);
+			
+			$this->add_responsive_control(
+				'icon_position',
+				[
+					'label' => __( 'Icon position', 'elementor' ),
+					'type' => \Elementor\Controls_Manager::CHOOSE,
+					'options' => [
+						'row' => [
+							'title' => __( 'Left', 'elementor' ),
+							'icon' => 'eicon-text-align-left',
+						],
+						
+						'row-reverse' => [
+							'title' => __( 'Right', 'elementor' ),
+							'icon' => 'eicon-text-align-right',
+						],
+						
+					],
+					'default' => 'row',
+					'selectors' => [
+						'{{WRAPPER}} span.slick-slide' => 'display: flex; flex-direction: {{VALUE}}',
+					],
+				]
+			);	
 		
 		$this->end_controls_section();
 		
@@ -211,7 +261,7 @@ class ANONY_Extension_Vertical_Text_Slider extends \Elementor\Widget_Base {
 					'label' => esc_html__( 'Color', ANOEL_TEXTDOM ),
 					'type' => \Elementor\Controls_Manager::COLOR,
 					'selectors' => [
-						'{{WRAPPER}} .anoshc-slick-vtext li:not(i)' => 'color: {{VALUE}}'
+						'{{WRAPPER}} .anoshc-slick-vtext span:not(i)' => 'color: {{VALUE}}'
 					],
 				]
 			);
@@ -222,7 +272,7 @@ class ANONY_Extension_Vertical_Text_Slider extends \Elementor\Widget_Base {
 					'name' => 'text_typography',
 					'label' => esc_html__( 'Typography', 'elementor' ),
 					'scheme' => \Elementor\Scheme_Typography::TYPOGRAPHY_1,
-					'selector' => '{{WRAPPER}} .anoshc-slick-vtext li:not(i)',
+					'selector' => '{{WRAPPER}} .anoshc-slick-vtext span:not(i)',
 				]
 			);
 			
@@ -241,10 +291,47 @@ class ANONY_Extension_Vertical_Text_Slider extends \Elementor\Widget_Base {
 					'label' => esc_html__( 'Color', ANOEL_TEXTDOM ),
 					'type' => \Elementor\Controls_Manager::COLOR,
 					'selectors' => [
-						'{{WRAPPER}} .anoshc-slick-vtext li > i' => 'color: {{VALUE}}'
+						'{{WRAPPER}} .anoshc-slick-vtext span > i' => 'color: {{VALUE}}'
 					],
 				]
 			);
+			
+			$this->add_responsive_control(
+				'size',
+				[
+					'label' => __( 'Size', 'elementor' ),
+					'type' => \Elementor\Controls_Manager::SLIDER,
+					'range' => [
+						'px' => [
+							'min' => 6,
+							'max' => 300,
+						],
+					],
+					'selectors' => [
+						'{{WRAPPER}} span.slick-slide i' => 'font-size: {{SIZE}}{{UNIT}};',
+					],
+					'separator' => 'before',
+				]
+			);
+			
+			$this->add_responsive_control(
+				'space_between',
+				[
+					'label' => __( 'Space Between', 'elementor' ),
+					'type' => \Elementor\Controls_Manager::SLIDER,
+					'range' => [
+						'px' => [
+							'max' => 50,
+						],
+					],
+					'selectors' => [
+						
+						'body.rtl {{WRAPPER}} span.slick-slide i' => 'margin-left: {{SIZE}}{{UNIT}}',
+						'body:not(.rtl) {{WRAPPER}} span.slick-slide i' => 'margin-right: {{SIZE}}{{UNIT}}',
+					],
+				]
+			);
+
 			
 		
 		
@@ -262,6 +349,17 @@ class ANONY_Extension_Vertical_Text_Slider extends \Elementor\Widget_Base {
 	protected function render() {
 		
 		$settings = $this->get_settings_for_display();
+		
+		$this->add_render_attribute( 'vertical_slider_list', 'class', 'anoshc-slick-vtext' );
+		
+		if ( 'row-reverse' === $settings['icon_position'] ) {
+			$this->add_render_attribute( 'vertical_slider_list_item', 'class', 'row-reverse' );
+			
+		}else{
+			$this->add_render_attribute( 'vertical_slider_list_item', 'class', 'row' );
+		}
+		
+		$icon_position = $settings['icon_position'];
 		
 		if ( $settings['vertical_slider_list'] && !empty($settings['vertical_slider_list']) ) {
 			
@@ -306,14 +404,21 @@ class ANONY_Extension_Vertical_Text_Slider extends \Elementor\Widget_Base {
 
 		?>
 		
-		<# if ( settings.vertical_slider_list.length ) { 
+		
+		<# 
+		
+			view.addRenderAttribute( 'vertical_slider_list', 'class', 'anoshc-slick-vtext' );
+		
+			if ( 'row-reverse' == settings.icon_position ) {
+				view.addRenderAttribute( 'vertical_slider_list_item', 'class', 'row-reverse' );
+			}
 		
 			var iconsHTML = {},
 				migrated = {};
 		
 		#>
 		
-		<div class="anoshc-slick-vtext">
+		<div {{{ view.getRenderAttributeString( 'vertical_slider_list' ) }}}>
 			
 			<# _.each( settings.vertical_slider_list, function( item, index ) {
 				
@@ -321,13 +426,11 @@ class ANONY_Extension_Vertical_Text_Slider extends \Elementor\Widget_Base {
 			
 			 #>
 			
-				<p>{{{ iconsHTML[ index ].value }}}{{{ item.item_content }}}</p>
+				<span {{{ view.getRenderAttributeString( 'vertical_slider_list_item' ) }}}>{{{ iconsHTML[ index ].value }}}{{{ item.item_content }}}</span>
 			
 			<# } ); #>
 			
 		</div>
-			
-		<# } #>
 		
 
 	<?php }
