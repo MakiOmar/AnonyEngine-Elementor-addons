@@ -1,0 +1,227 @@
+#slider{
+	height:650px;
+	overflow:hidden;
+}
+
+.slider-content{
+	height:650px;
+	width:100%;
+  margin:auto;
+	font-family:"Open Sans", "Avenir-light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight:300;
+  display: flex;
+}
+
+.slider-item{
+  position:relative;
+	height:650px;
+	overflow:hidden;
+	/*-webkit-transform: translate3d(0, 0, 0) skew(-20deg, 0deg);
+	-moz-transform: translate3d(0, 0, 0) skew(-20deg, 0deg);
+	-ms-transform: translate3d(0, 0, 0) skew(-20deg, 0deg);
+	transform: translate3d(0, 0, 0) skew(-20deg, 0deg);*/
+	transition:all 0.5s;
+  border-right: 3px solid #fff;
+}
+.image-first.slider-item{
+  border-right: none;
+}
+/*
+.slider-item:first-child{
+	margin-left:-123px;
+}
+*/
+.image{
+	float:left;
+	position:relative;
+	transition:all 0.5s;
+	cursor:pointer;
+}
+
+.item-img-1,.item-img-2{
+	height:650px;
+	width:200%;
+	top:0px;
+	position:absolute;
+	left:-115px;
+  background-size: 1200px 650px !important;
+	/*-webkit-transform: translate3d(0, 0, 0) skew(20deg, 0deg);
+	-moz-transform: translate3d(0, 0, 0) skew(20deg, 0deg);
+	-ms-transform: translate3d(0, 0, 0) skew(20deg, 0deg);
+	transform: translate3d(0, 0, 0) skew(20deg, 0deg);*/
+	transition:all 0.5s;
+}
+
+.item-img-loaded{
+  /**ransform:translate3d(0, 0, 0) skew(20deg, 0deg) scale(1.1);*/
+  transition:all 1s ease;
+}
+
+.item-img-2{
+	opacity:0;
+}
+
+.item-img-2:before{
+  content: '';
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(0,0,0,0.5);
+}
+
+.item-text{
+	position:absolute;
+}
+
+.image-text{
+	top:35%;
+	left:42%;
+  opacity:1;
+	position:absolute;
+	font-size:35px;
+	color:black;
+	transition:all 0.5s;
+}
+
+.image:hover .image-text{
+	font-size:40px;
+}
+
+@media (min-width:1400px){
+  .image:nth-child(2) .item-img-1{
+  	left:-100px;
+  }
+
+  .image:nth-child(3) .item-img-1{
+    left:-500px;
+  }
+
+  .image:last-child .item-img-2{
+  	left:-220px;
+  }
+
+  .image:last-child .item-img-1{
+    left:-100px;
+  }
+
+  .image:last-child .image-text{
+  	left:0px;
+  }
+
+  .image:last-child:hover .image-text{
+  	left:20%;
+  }
+}
+
+@media (max-width:1400px){
+  .image:first-child .image-text{
+  	left:5%;
+  }
+
+  .image-text{
+    left: 0;
+    padding: 20px;
+  }
+
+  .image:last-child .image-text{
+    left:5%;
+  }
+
+  .image:nth-child(1) .item-img-1{
+    background-position-x: -100px!important;
+  }
+
+  .image:nth-child(1) .item-img-2{
+  	background-position-x: -300px!important;
+  }
+
+  .image:nth-child(2) .item-img-1{
+
+  }
+
+  .image:nth-child(2) .item-img-2{
+  	background-position-x: -600px!important;
+  }
+
+  .image:nth-child(2) .item-img-2{
+  	background-position-x: -100px!important;
+  }
+
+   .image:nth-child(3) .item-img-1{
+    background-position-x: -450px!important;
+  }
+
+  .image:nth-child(3) .item-img-2{
+  	background-position-x: -400px!important;
+  }
+
+  .image:nth-child(4) .item-img-2{
+  	background-position-x: -400px!important;
+  }
+}
+
+@media (max-width:700px){
+  #slider{
+    height:450px;
+  }
+	.slider-item{
+		height:450px;
+	}
+  .item-img-1,.item-img-2{
+		height:450px;
+  }
+
+  .image-text{
+    left:20%!important;
+    font-size:25px!important;
+  }
+
+  .image:first-child .image-text{
+    left:25%!important;
+  }
+
+  .image:last-child .image-text{
+    left:10%!important;
+  }
+
+  .image:nth-child(1) .item-img-1{
+    background-position-x: -165px!important;
+  }
+
+  .image:nth-child(2) .item-img-2{
+  	background-position-x: -650px!important;
+  }
+
+  .image:nth-child(3) .item-img-1{
+    background-position-x: -650px!important;
+  }
+
+  .image:nth-child(3) .item-img-2{
+  	background-position-x: -550px!important;
+  }
+
+  .image:nth-child(4) .item-img-1{
+  	background-position-x: -100px!important;
+  }
+
+  .image:nth-child(4) .item-img-2{
+  	background-position-x: -550px!important;
+  }
+}
+
+
+
+@media (max-width:400px){
+  .image:last-child .image-text{
+    left:-30px!important;
+  }
+
+  .image:first-child .image-text{
+    left:20px!important;
+  }
+
+  .image-text{
+    left:-50px!important;
+  }
+}

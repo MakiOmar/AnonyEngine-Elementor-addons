@@ -98,6 +98,7 @@ final class ANONY_Extension_Elements_Loader {
 			'owl-menu' => 'owl-menu',
 			'posts-grid' => 'posts-grid',
 			'slick-vtext' => 'slick-vtext-slider',
+			'skew-carousel' => 'skew-carousel',
 		);
 			
 		$styles_libs = [
@@ -136,6 +137,7 @@ final class ANONY_Extension_Elements_Loader {
 		$scripts = array(
 			'slick-vtext' => 'slick-vtext-slider',
 			'headpshot-init' => 'headpshot-init',
+			'skew-carousel' => 'skew-carousel',
 		);
 		
 		$libs_scripts = [
@@ -340,7 +342,8 @@ final class ANONY_Extension_Elements_Loader {
 		//'ANONY_Extension_Oembed',
 		//'ANONY_Extension_Simple_Content',
 		//'ANONY_Extension_Repeater',
-		'ANONY_Extension_Vertical_Text_Slider'
+		'ANONY_Extension_Vertical_Text_Slider',
+		'ANONY_Extension_Skew_Carousel'
 			
 		
 		];
