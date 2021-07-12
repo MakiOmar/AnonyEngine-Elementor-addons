@@ -99,7 +99,7 @@ class ANONY_Extension_Repeater extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'content_section',
 			[
-				'label' => __( 'Content', 'plugin-name' ),
+				'label' => __( 'Content', ANOEL_TEXTDOM ),
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -147,7 +147,7 @@ class ANONY_Extension_Repeater extends \Elementor\Widget_Base {
 			$repeater->add_control(
 				'icon',
 				[
-					'label' => __( 'Icon', 'text-domain' ),
+					'label' => __( 'Icon', ANOEL_TEXTDOM ),
 					'type' => \Elementor\Controls_Manager::ICONS,
 					'default' => [
 						'value' => 'fas fa-star',

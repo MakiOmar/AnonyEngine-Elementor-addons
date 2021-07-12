@@ -113,7 +113,7 @@ class ANONY_Extension_Animated_Icon_List extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'content_section',
 			[
-				'label' => esc_html__( 'Content', 'plugin-name' ),
+				'label' => esc_html__( 'Content', ANOEL_TEXTDOM ),
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -121,9 +121,21 @@ class ANONY_Extension_Animated_Icon_List extends \Elementor\Widget_Base {
 			$repeater = new \Elementor\Repeater();
 			
 			$repeater->add_control(
+				'content_number',
+				[
+					'label' => esc_html__( 'Number or text', ANOEL_TEXTDOM ),
+					'type' => \Elementor\Controls_Manager::ICONS,
+					'default' => [
+						'value' => 'fas fa-star',
+						'library' => 'solid',
+					],
+				]
+			);
+			
+			$repeater->add_control(
 				'content_icon',
 				[
-					'label' => esc_html__( 'Icon', 'text-domain' ),
+					'label' => esc_html__( 'Icon', ANOEL_TEXTDOM ),
 					'type' => \Elementor\Controls_Manager::ICONS,
 					'default' => [
 						'value' => 'fas fa-star',
@@ -249,7 +261,7 @@ class ANONY_Extension_Animated_Icon_List extends \Elementor\Widget_Base {
 			$this->add_control(
 				'text_color_heading',
 				[
-					'label' => esc_html__( 'Text', 'plugin-name' ),
+					'label' => esc_html__( 'Text', ANOEL_TEXTDOM ),
 					'type' => \Elementor\Controls_Manager::HEADING,
 					'separator' => 'before',
 				]
@@ -279,7 +291,7 @@ class ANONY_Extension_Animated_Icon_List extends \Elementor\Widget_Base {
 			$this->add_control(
 				'icon_color_heading',
 				[
-					'label' => esc_html__( 'Icon', 'plugin-name' ),
+					'label' => esc_html__( 'Icon', ANOEL_TEXTDOM ),
 					'type' => \Elementor\Controls_Manager::HEADING,
 					'separator' => 'before',
 				]

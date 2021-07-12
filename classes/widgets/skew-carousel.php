@@ -116,7 +116,7 @@ class ANONY_Extension_Skew_Carousel extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'content_section',
 			[
-				'label' => esc_html__( 'Content', 'plugin-name' ),
+				'label' => esc_html__( 'Content', ANOEL_TEXTDOM ),
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
