@@ -106,6 +106,7 @@ final class ANONY_Extension_Elements_Loader {
 			'slick' => 'slick',
 			'heapshot' => 'heapshot',
 			'owl.carousel' => 'owl.carousel.min',
+			'animated-icon-list' => 'animated-icon-list',
 			'font-awesome-5-all' => 'all',
 		];
 		
@@ -341,7 +342,7 @@ final class ANONY_Extension_Elements_Loader {
 		
 		//'ANONY_Extension_Oembed',
 		//'ANONY_Extension_Simple_Content',
-		//'ANONY_Extension_Repeater',
+		'ANONY_Extension_Animated_Icon_List',
 		'ANONY_Extension_Vertical_Text_Slider',
 		'ANONY_Extension_Skew_Carousel'
 			
