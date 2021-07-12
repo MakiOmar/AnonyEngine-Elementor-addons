@@ -124,11 +124,8 @@ class ANONY_Extension_Animated_Icon_List extends \Elementor\Widget_Base {
 				'content_number',
 				[
 					'label' => esc_html__( 'Number or text', ANOEL_TEXTDOM ),
-					'type' => \Elementor\Controls_Manager::ICONS,
-					'default' => [
-						'value' => 'fas fa-star',
-						'library' => 'solid',
-					],
+					'type' => \Elementor\Controls_Manager::TEXT,
+					'default' => '01',
 				]
 			);
 			
@@ -273,7 +270,7 @@ class ANONY_Extension_Animated_Icon_List extends \Elementor\Widget_Base {
 					'label' => esc_html__( 'Color', ANOEL_TEXTDOM ),
 					'type' => \Elementor\Controls_Manager::COLOR,
 					'selectors' => [
-						'{{WRAPPER}} .anoshc-animated-icon-list span:not(i)' => 'color: {{VALUE}}'
+						'{{WRAPPER}} .anoshc-animated-icon-list div:not(i)' => 'color: {{VALUE}}'
 					],
 				]
 			);
@@ -284,7 +281,7 @@ class ANONY_Extension_Animated_Icon_List extends \Elementor\Widget_Base {
 					'name' => 'text_typography',
 					'label' => esc_html__( 'Typography', 'elementor' ),
 					'scheme' => \Elementor\Scheme_Typography::TYPOGRAPHY_1,
-					'selector' => '{{WRAPPER}} .anoshc-animated-icon-list span:not(i)',
+					'selector' => '{{WRAPPER}} .anoshc-animated-icon-list div:not(i)',
 				]
 			);
 			
@@ -303,7 +300,7 @@ class ANONY_Extension_Animated_Icon_List extends \Elementor\Widget_Base {
 					'label' => esc_html__( 'Color', ANOEL_TEXTDOM ),
 					'type' => \Elementor\Controls_Manager::COLOR,
 					'selectors' => [
-						'{{WRAPPER}} .anoshc-animated-icon-list span > i' => 'color: {{VALUE}}'
+						'{{WRAPPER}} .anoshc-animated-icon-list div > i' => 'color: {{VALUE}}'
 					],
 				]
 			);
@@ -332,14 +329,19 @@ class ANONY_Extension_Animated_Icon_List extends \Elementor\Widget_Base {
 					'label' => __( 'Space Between', 'elementor' ),
 					'type' => \Elementor\Controls_Manager::SLIDER,
 					'range' => [
-						'px' => [
-							'max' => 50,
-						],
+						'%' => [
+							'min' => 0,
+							'max' => 100,
+						]
+					],
+					'default' => [
+						'unit' => '%',
+						'size' => 10,
 					],
 					'selectors' => [
 						
-						'body.rtl {{WRAPPER}} .anoshc-animated-icon-list i' => 'margin-left: {{SIZE}}{{UNIT}}',
-						'body:not(.rtl) {{WRAPPER}} .anoshc-animated-icon-list i' => 'margin-right: {{SIZE}}{{UNIT}}',
+						'body.rtl {{WRAPPER}} .anoshc-animated-icon-list .animated-icon-list-item' => 'margin-left: {{SIZE}}{{UNIT}}',
+						'body:not(.rtl) {{WRAPPER}} .anoshc-animated-icon-list .animated-icon-list-item' => 'margin-right: {{SIZE}}{{UNIT}}',
 					],
 				]
 			);
@@ -365,10 +367,15 @@ class ANONY_Extension_Animated_Icon_List extends \Elementor\Widget_Base {
 		$this->add_render_attribute( 'animated_icon_list', 'class', 'anoshc-animated-icon-list' );
 		
 		if ( 'row-reverse' === $settings['icon_position'] ) {
-			$this->add_render_attribute( 'animated_icon_list_item', 'class', 'row-reverse' );
+			$this->add_render_attribute( 
+				'animated_icon_list_item',
+				[
+					'class' => ['row-reverse', 'animated-icon-list-item']
+				]
+			);
 			
 		}else{
-			$this->add_render_attribute( 'animated_icon_list_item', 'class', 'row' );
+			$this->add_render_attribute( 'animated_icon_list_item', ['class' => ['row', 'animated-icon-list-item']] );
 		}
 		
 		$icon_position = $settings['icon_position'];
@@ -382,6 +389,7 @@ class ANONY_Extension_Animated_Icon_List extends \Elementor\Widget_Base {
 				$temp['content'] = $item['item_content'];
 				$temp['icon'] = $item['content_icon']['value'];
 				$temp['content_icon'] = $item['content_icon'];
+				$temp['content_number'] = $item['content_number'];
 				
 				$data[] = $temp;
 				
@@ -438,7 +446,11 @@ class ANONY_Extension_Animated_Icon_List extends \Elementor\Widget_Base {
 			
 			 #>
 			
-				<span {{{ view.getRenderAttributeString( 'animated_icon_list_item' ) }}}>{{{ iconsHTML[ index ].value }}}{{{ item.item_content }}}</span>
+				<div {{{ view.getRenderAttributeString( 'animated_icon_list_item' ) }}}>
+					<div class="anli-number">{{{item.content_number}}}</div>
+					<div class="anli-icon">{{{ iconsHTML[ index ].value }}}</div>
+					<div class="anli-content">{{{ item.item_content }}}</div>
+				</div>
 			
 			<# } ); #>
 			
