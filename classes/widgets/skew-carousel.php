@@ -248,7 +248,7 @@ class ANONY_Extension_Skew_Carousel extends \Elementor\Widget_Base {
 				[
 					'name' => 'description_typography',
 					'label' => esc_html__( 'Typography', 'elementor' ),
-					'scheme' => \Elementor\Scheme_Typography::TYPOGRAPHY_1,
+					'scheme' => Elementor\Core\Schemes\Typography::TYPOGRAPHY_1,
 					'selector' => '{{WRAPPER}} .image-text p',
 				]
 			);

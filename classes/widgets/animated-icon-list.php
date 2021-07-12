@@ -280,7 +280,7 @@ class ANONY_Extension_Animated_Icon_List extends \Elementor\Widget_Base {
 				[
 					'name' => 'text_typography',
 					'label' => esc_html__( 'Typography', 'elementor' ),
-					'scheme' => \Elementor\Scheme_Typography::TYPOGRAPHY_1,
+					'scheme' => Elementor\Core\Schemes\Typography::TYPOGRAPHY_1,
 					'selector' => '{{WRAPPER}} .anoshc-animated-icon-list div:not(i)',
 				]
 			);
@@ -328,6 +328,7 @@ class ANONY_Extension_Animated_Icon_List extends \Elementor\Widget_Base {
 				[
 					'label' => __( 'Space Between', 'elementor' ),
 					'type' => \Elementor\Controls_Manager::SLIDER,
+					'size_units' => [ 'px', '%' ],
 					'range' => [
 						'%' => [
 							'min' => 0,
@@ -335,7 +336,7 @@ class ANONY_Extension_Animated_Icon_List extends \Elementor\Widget_Base {
 						]
 					],
 					'default' => [
-						'unit' => '%',
+						'unit' => 'px',
 						'size' => 10,
 					],
 					'selectors' => [

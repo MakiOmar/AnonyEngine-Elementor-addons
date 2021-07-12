@@ -271,7 +271,7 @@ class ANONY_Extension_Vertical_Text_Slider extends \Elementor\Widget_Base {
 				[
 					'name' => 'text_typography',
 					'label' => esc_html__( 'Typography', 'elementor' ),
-					'scheme' => \Elementor\Scheme_Typography::TYPOGRAPHY_1,
+					'scheme' => Elementor\Core\Schemes\Typography::TYPOGRAPHY_1,
 					'selector' => '{{WRAPPER}} .anoshc-slick-vtext span:not(i)',
 				]
 			);
