@@ -1,10 +1,28 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly.
+/**
+ * AnonyEngine elements configuration file
+ *
+ * PHP version 7.3 Or Later
+ *
+ * @package  AnonyEngine elements
+ * @author   Makiomar <info@makior.com>
+ * @license  https://makiomar.com AnonyEngine Licence
+ * @link     https://makiomar.com/anonyengine_elements
+ */
 
-if (!function_exists('nvd')) {
-	function nvd($arr){
+defined( 'ABSPATH' ) || die(); // Exit if accessed direct.
+
+if ( ! function_exists( 'nvd' ) ) {
+	/**
+	 * Debug helper
+	 *
+	 * @param mixed $data Debug data.
+	 *
+	 * @return void
+	 */
+	function nvd( $data ) {
 		echo '<pre dir="ltr">';
-			var_dump($arr);
+			var_dump( $data );
 		echo '</pre>';
 	}
 }
@@ -12,77 +30,80 @@ if (!function_exists('nvd')) {
 
 /**
  * Holds plugin's URI
+ *
  * @const
- */ 
-define('ANOEL_URI', plugin_dir_url( __FILE__ ));
+ */
+define( 'ANOEL_URI', plugin_dir_url( __FILE__ ) );
 
 /**
  * Holds plugin's text domain
+ *
  * @const
  */
-define('ANOEL_TEXTDOM', 'anonyengine-elements');
+define( 'ANOEL_TEXTDOM', 'anonyengine-elements' );
 
 /**
  * Holds plugin's classes
+ *
  * @const
  */
-define('ANOEL_ClASSES', ANOEL_DIR . 'classes');
+define( 'ANOEL_CLASSES', ANOEL_DIR . 'classes' );
 
 /**
  * Holds plugin's Widgets' classes
+ *
  * @const
  */
-define('ANOEL_WIDGETS_ClASSES', ANOEL_DIR . 'classes/widgets');
+define( 'ANOEL_WIDGETS_CLASSES', ANOEL_DIR . 'classes/widgets' );
 
 /**
  * Holds plugin's Widgets' controls
+ *
  * @const
  */
-define('ANOEL_CONTROLS_ClASSES', ANOEL_DIR . 'classes/controls');
+define( 'ANOEL_CONTROLS_CLASSES', ANOEL_DIR . 'classes/controls' );
 
 
 
-define('ANOEL_AUTOLOADS' ,serialize(array(
-	ANOEL_ClASSES,
-	ANOEL_WIDGETS_ClASSES,
-	ANOEL_CONTROLS_ClASSES
-)));
+define(
+	'ANOEL_AUTOLOADS',
+	wp_json_encode(
+		array(
+			ANOEL_CLASSES,
+			ANOEL_WIDGETS_CLASSES,
+			ANOEL_CONTROLS_CLASSES,
+		)
+	)
+);
 
-/*
-*Classes Auto loader
-*/
-spl_autoload_register( function ( $class_name ) {
+/**
+ * Classes Auto loader
+ */
+spl_autoload_register(
+	function ( $class_name ) {
 
-	if ( false !== strpos( $class_name, 'ANONY_Extension_' )) {
+		if ( false !== strpos( $class_name, 'ANOEL_' ) ) {
 
-		$class_name = preg_replace('/ANONY_Extension_/', '', $class_name);
+			$class_name = 'class-'. strtolower( str_replace( '_', '-', $class_name ) );
 
-		$class_name  = strtolower(str_replace('_', '-', $class_name));
-		
-		$class_file = $class_name .'.php';
+			$class_file = $class_name . '.php';
 
-		if(file_exists($class_file)){
+			if ( file_exists( $class_file ) ) {
 
-			require_once($class_file);
-		}else{
-			foreach(unserialize( ANOEL_AUTOLOADS ) as $path){
+				require_once $class_file;
 
-				$class_file = wp_normalize_path($path).'/' .$class_name . '.php';				
+			} else {
+				
+				foreach ( json_decode( ANOEL_AUTOLOADS ) as $path ) {
 
-				if(file_exists($class_file)){
+					$class_file = wp_normalize_path( $path ) . '/' . $class_name . '.php';
 
-					require_once($class_file);
-				}else{
+					if ( file_exists( $class_file ) ) {
 
-					$class_file = wp_normalize_path($path) .$class_name .'/' .$class_name . '.php';
-
-					if(file_exists($class_file)){
-
-						require_once($class_file);
+						require_once $class_file;
 					}
 				}
 			}
 		}
-		
 	}
-} );
+);

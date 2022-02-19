@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly.
  *
  * @since 1.0.0
  */
-class ANONY_Extension_Animated_Icon_List extends \Elementor\Widget_Base {
+class ANOEL_Animated_Icon_List extends \Elementor\Widget_Base {
 	
 	
 	/**
@@ -74,7 +74,7 @@ class ANONY_Extension_Animated_Icon_List extends \Elementor\Widget_Base {
 	 */
 	public function get_script_depends(){
 		
-		return [];
+		return ['anoel-animated-icon-list'];
 	}
 	
 	/**
@@ -421,7 +421,7 @@ class ANONY_Extension_Animated_Icon_List extends \Elementor\Widget_Base {
 	 * @since 1.0.0
 	 * @access protected
 	 */
-	protected function _content_template() {
+	protected function content_template() {
 
 		?>
 		
@@ -431,7 +431,21 @@ class ANONY_Extension_Animated_Icon_List extends \Elementor\Widget_Base {
 			view.addRenderAttribute( 'animated_icon_list', 'class', 'anoshc-animated-icon-list' );
 		
 			if ( 'row-reverse' == settings.icon_position ) {
-				view.addRenderAttribute( 'animated_icon_list_item', 'class', 'row-reverse' );
+				view.addRenderAttribute( 
+					'animated_icon_list_item', 
+					{
+						'class': ['row-reverse', 'animated-icon-list-item']
+					}
+				);
+			}else{
+				
+				view.addRenderAttribute( 
+					'animated_icon_list_item', 
+					{
+						'class': ['row', 'animated-icon-list-item']
+					}
+				);
+				
 			}
 		
 			var iconsHTML = {},
@@ -449,7 +463,9 @@ class ANONY_Extension_Animated_Icon_List extends \Elementor\Widget_Base {
 			
 				<div {{{ view.getRenderAttributeString( 'animated_icon_list_item' ) }}}>
 					<div class="anli-number">{{{item.content_number}}}</div>
-					<div class="anli-icon">{{{ iconsHTML[ index ].value }}}</div>
+					<div class="anli-icon-wrapper">
+						<div class="anli-icon">{{{ iconsHTML[ index ].value }}}</div>
+					</div>
 					<div class="anli-content">{{{ item.item_content }}}</div>
 				</div>
 			

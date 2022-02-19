@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly.
  *
  * @since 1.0.0
  */
-final class ANONY_Extension_Elements_Loader {
+final class ANOEL_Elements_Loader {
 
 	/**
 	 * Plugin Version
@@ -46,7 +46,7 @@ final class ANONY_Extension_Elements_Loader {
 	 * @access private
 	 * @static
 	 *
-	 * @var ANONY_Extension_Elements The single instance of the class.
+	 * @var ANOEL_Elements The single instance of the class.
 	 */
 	private static $_instance = null;
 
@@ -60,7 +60,7 @@ final class ANONY_Extension_Elements_Loader {
 	 * @access public
 	 * @static
 	 *
-	 * @return ANONY_Extension_Elements An instance of the class.
+	 * @return ANOEL_Elements An instance of the class.
 	 */
 	public static function instance() {
 
@@ -98,6 +98,7 @@ final class ANONY_Extension_Elements_Loader {
 			'owl-menu' => 'owl-menu',
 			'posts-grid' => 'posts-grid',
 			'slick-vtext' => 'slick-vtext-slider',
+			'animated-icon-list' => 'animated-icon-list',
 			'skew-carousel' => 'skew-carousel',
 		);
 			
@@ -106,7 +107,6 @@ final class ANONY_Extension_Elements_Loader {
 			'slick' => 'slick',
 			'heapshot' => 'heapshot',
 			'owl.carousel' => 'owl.carousel.min',
-			'animated-icon-list' => 'animated-icon-list',
 			'font-awesome-5-all' => 'all',
 		];
 		
@@ -138,6 +138,7 @@ final class ANONY_Extension_Elements_Loader {
 		$scripts = array(
 			'slick-vtext' => 'slick-vtext-slider',
 			'headpshot-init' => 'headpshot-init',
+			'animated-icon-list' => 'animated-icon-list',
 			'skew-carousel' => 'skew-carousel',
 		);
 		
@@ -340,11 +341,11 @@ final class ANONY_Extension_Elements_Loader {
 
 		$widgets = [
 		
-		//'ANONY_Extension_Oembed',
-		//'ANONY_Extension_Simple_Content',
-		'ANONY_Extension_Animated_Icon_List',
-		'ANONY_Extension_Vertical_Text_Slider',
-		'ANONY_Extension_Skew_Carousel'
+		//'ANOEL_Oembed',
+		'ANOEL_Terms_Dropdown',
+		'ANOEL_Animated_Icon_List',
+		'ANOEL_Vertical_Text_Slider',
+		'ANOEL_Skew_Carousel'
 			
 		
 		];
@@ -372,10 +373,10 @@ final class ANONY_Extension_Elements_Loader {
 	public function init_controls() {
 
 		/*// Include Control files
-		require_once( ANOEL_CONTROLS_ClASSES . '/test.php' );
+		require_once( ANOEL_CONTROLS_CLASSES . '/test.php' );
 
 		// Register control
-		\Elementor\Plugin::$instance->controls_manager->register_control( 'control-type-', new \ANONY_Extension_Elements_Control() );
+		\Elementor\Plugin::$instance->controls_manager->register_control( 'control-type-', new \ANOEL_Elements_Control() );
 		*/
 
 	}

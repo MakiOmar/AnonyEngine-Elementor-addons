@@ -1,0 +1,103 @@
+.anoshc-animated-icon-list, .animated-icon-list-item{
+	position: relative;
+}
+.animated-icon-list-item .anli-icon-wrapper, .anli-icon, .animated-icon-list-item{
+	-moz-transition: all 0.5s linear;
+	-webkit-transition: all 0.5s linear;
+	-ms-transition: all 0.5s linear;
+	-o-transition: all 0.5s linear;
+}
+
+.animated-icon-list-item{
+	-moz-transition: all 2s linear;
+	-webkit-transition: all 2s linear;
+	-ms-transition: all 2s linear;
+	-o-transition: all 2s linear;
+	position: relative;
+	
+	
+}
+
+.animated-icon-list-item .anli-icon-wrapper {
+	position: relative;
+	width: 90px;
+	height: 45px;
+	background-color: #64C7CC;
+	margin: 86.60px 0;
+}
+
+.animated-icon-list-item .anli-icon-wrapper:before, .anli-icon-wrapper:after {
+	content: "";
+	position: absolute;
+	width: 0;
+	border-left: 45px solid transparent;
+	border-right: 45px solid transparent;
+}
+.animated-icon-list-item .anli-icon-wrapper:before {
+  bottom: 100%;
+  border-bottom: 30px solid #64C7CC;
+}
+
+.animated-icon-list-item .anli-icon-wrapper:after {
+  top: 100%;
+  width: 0;
+  border-top: 30px solid #64C7CC;
+}
+
+.animated-icon-list-item .anli-icon-wrapper .anli-icon{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	color: #fff;
+}
+
+.animated-icon-list-item .anli-number{
+	position: relative;
+	text-align: center;
+}
+
+.animated-icon-list-item .anli-number::before, .animated-icon-list-item .anli-number::after{
+	position: absolute;
+	-moz-transform: translatex(-50%);
+	-webkit-transform: translatex(-50%);
+	-ms-transform: translatex(-50%);
+	-o-transform: translatex(-50%);
+	-moz-transition: all 0.5s linear;
+	-webkit-transition: all 0.5s linear;
+	-ms-transition: all 0.5s linear;
+	-o-transition: all 0.5s linear;
+	left: 53%;
+}
+.animated-icon-list-item .anli-number::before {
+	content: "\f0d7";
+	
+	color: #7ed3f7;
+	font-family: "FontAwesome";
+	font-size: 10px;
+	line-height: 1;
+	top: 70px;
+	margin-top: -2px;
+	
+}
+
+.animated-icon-list-item .anli-number::after {
+	content: "";
+	bottom: -50px;
+	height: 54px;
+	width: 1px;
+	border: 2px dotted #7ed3f7;
+	border-right: 0;
+}
+/*
+.anli-icon-wrapper:after{
+	position: absolute;
+	content: "";
+	background: #005baa;
+	left: 0px;
+	top: 0px;
+	height: 100%;
+	width: 100%;
+}
+*/

@@ -1,16 +1,28 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly.
+/**
+ * Elementor Vertical text slider Widget
+ *
+ * PHP version 7.3 Or Later
+ *
+ * @package  AnonyEngine elements
+ * @author   Makiomar <info@makior.com>
+ * @license  https://makiomar.com AnonyEngine Licence
+ * @link     https://makiomar.com/anonyengine_elements
+ */
+
+defined( 'ABSPATH' ) || die(); // Exit if accessed direct.
 
 /**
- * Elementor Vertical text slider Widget.
+ * Elementor vertical text slider widget class.
  *
- * Elementor widget that inserts simple content into the page.
- *
- * @since 1.0.0
+ * @package    Elementor Widgets
+ * @author     Makiomar <info@makior.com>
+ * @license    https://makiomar.com SmartPage Licence
+ * @link       https://makiomar.com
  */
-class ANONY_Extension_Vertical_Text_Slider extends \Elementor\Widget_Base {
-	
-	
+class ANOEL_Vertical_Text_Slider extends \Elementor\Widget_Base {
+
+
 	/**
 	 * Get widget name.
 	 *
@@ -24,7 +36,7 @@ class ANONY_Extension_Vertical_Text_Slider extends \Elementor\Widget_Base {
 	public function get_name() {
 		return 'vertical-text-slider';
 	}
-	
+
 	/**
 	 * Get widget title.
 	 *
@@ -38,7 +50,7 @@ class ANONY_Extension_Vertical_Text_Slider extends \Elementor\Widget_Base {
 	public function get_title() {
 		return __( 'Vertical text slider', ANOEL_TEXTDOM );
 	}
-	
+
 	/**
 	 * Get widget keywords.
 	 *
@@ -50,9 +62,9 @@ class ANONY_Extension_Vertical_Text_Slider extends \Elementor\Widget_Base {
 	 * @return array Widget keywords.
 	 */
 	public function get_keywords() {
-		return [ 'slider' ];
+		return array( 'slider' );
 	}
-	
+
 	/**
 	 * Get widget icon.
 	 *
@@ -66,26 +78,28 @@ class ANONY_Extension_Vertical_Text_Slider extends \Elementor\Widget_Base {
 	public function get_icon() {
 		return 'fa fa-bars';
 	}
-	
-	
+
+
 	/**
 	 * Get scripts dependancies
+	 *
 	 * @return type
 	 */
-	public function get_script_depends(){
-		
-		return ['slick','anoel-slick-vtext'];
+	public function get_script_depends() {
+
+		return array( 'slick', 'anoel-slick-vtext' );
 	}
-	
+
 	/**
 	 * Get style dependancies
+	 *
 	 * @return type
 	 */
-	public function get_style_depends(){
-		
-		return ['slick','anoel-slick-vtext', 'elementor-icons-fa-solid', 'elementor-icons-shared-0'];
+	public function get_style_depends() {
+
+		return array( 'slick', 'anoel-slick-vtext', 'elementor-icons-fa-solid', 'elementor-icons-shared-0' );
 	}
-	
+
 	/**
 	 * Get widget categories.
 	 *
@@ -97,9 +111,9 @@ class ANONY_Extension_Vertical_Text_Slider extends \Elementor\Widget_Base {
 	 * @return array Widget categories.
 	 */
 	public function get_categories() {
-		return [ 'anonyengine' ];
+		return array( 'anonyengine' );
 	}
-	
+
 	/**
 	 * Register Vertical text slider widget controls.
 	 *
@@ -109,232 +123,229 @@ class ANONY_Extension_Vertical_Text_Slider extends \Elementor\Widget_Base {
 	 * @access protected
 	 */
 	protected function _register_controls() {
-		
+
 		$this->start_controls_section(
 			'content_section',
-			[
+			array(
 				'label' => esc_html__( 'Content', ANOEL_TEXTDOM ),
-				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
-			]
+				'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
+			)
 		);
-		
+
 			$repeater = new \Elementor\Repeater();
-			
+
 			$repeater->add_control(
 				'content_icon',
-				[
-					'label' => esc_html__( 'Icon', ANOEL_TEXTDOM ),
-					'type' => \Elementor\Controls_Manager::ICONS,
-					'default' => [
-						'value' => 'fas fa-star',
+				array(
+					'label'   => esc_html__( 'Icon', ANOEL_TEXTDOM ),
+					'type'    => \Elementor\Controls_Manager::ICONS,
+					'default' => array(
+						'value'   => 'fas fa-star',
 						'library' => 'solid',
-					],
-				]
+					),
+				)
 			);
-			
-			
+
 			$repeater->add_control(
-				'item_content', [
-					'label' => esc_html__( 'Content', ANOEL_TEXTDOM ),
-					'type' => \Elementor\Controls_Manager::TEXT,
-					'default' => esc_html__( 'Add your content here' , ANOEL_TEXTDOM ),
+				'item_content',
+				array(
+					'label'      => esc_html__( 'Content', ANOEL_TEXTDOM ),
+					'type'       => \Elementor\Controls_Manager::TEXT,
+					'default'    => esc_html__( 'Add your content here', ANOEL_TEXTDOM ),
 					'show_label' => false,
-					'dynamic' => [
+					'dynamic'    => array(
 						'active' => true,
-					],
-				]
+					),
+				)
 			);
-			
+
 			$this->add_control(
 				'vertical_slider_list',
-				[
-					'label' => esc_html__( 'Vertical text slider List', ANOEL_TEXTDOM ),
-					'type' => \Elementor\Controls_Manager::REPEATER,
-					'fields' => $repeater->get_controls(),
-					'default' => [
-						[
+				array(
+					'label'       => esc_html__( 'Vertical text slider List', ANOEL_TEXTDOM ),
+					'type'        => \Elementor\Controls_Manager::REPEATER,
+					'fields'      => $repeater->get_controls(),
+					'default'     => array(
+						array(
 							'item_content' => esc_html__( 'Item content #1', ANOEL_TEXTDOM ),
-							'content_icon' => [
-								'value' => 'fas fa-check',
+							'content_icon' => array(
+								'value'   => 'fas fa-check',
 								'library' => 'fa-solid',
-							],
-						],
-						[
+							),
+						),
+						array(
 							'item_content' => esc_html__( 'Item content #2', ANOEL_TEXTDOM ),
-							'content_icon' => [
-								'value' => 'fas fa-times',
+							'content_icon' => array(
+								'value'   => 'fas fa-times',
 								'library' => 'fa-solid',
-							],
-						],
-						
-						[
+							),
+						),
+
+						array(
 							'item_content' => esc_html__( 'Item content #3', ANOEL_TEXTDOM ),
-							'content_icon' => [
-								'value' => 'fas fa-dot-circle',
+							'content_icon' => array(
+								'value'   => 'fas fa-dot-circle',
 								'library' => 'fa-solid',
-							],
-						],
-					],
+							),
+						),
+					),
 					'title_field' => '{{{ elementor.helpers.renderIcon( this, content_icon, {}, "i", "panel" ) || \'<i class="{{ content_icon }}" aria-hidden="true"></i>\' }}} {{{ item_content }}}',
-				]
+				)
 			);
-			
+
 			$this->add_responsive_control(
 				'align',
-				[
-					'label' => __( 'Alignment', 'elementor' ),
-					'type' => \Elementor\Controls_Manager::CHOOSE,
-					'options' => [
-						'left' => [
+				array(
+					'label'     => __( 'Alignment', 'elementor' ),
+					'type'      => \Elementor\Controls_Manager::CHOOSE,
+					'options'   => array(
+						'left'   => array(
 							'title' => __( 'Left', 'elementor' ),
-							'icon' => 'eicon-text-align-left',
-						],
-						'center' => [
+							'icon'  => 'eicon-text-align-left',
+						),
+						'center' => array(
 							'title' => __( 'Center', 'elementor' ),
-							'icon' => 'eicon-text-align-center',
-						],
-						'right' => [
+							'icon'  => 'eicon-text-align-center',
+						),
+						'right'  => array(
 							'title' => __( 'Right', 'elementor' ),
-							'icon' => 'eicon-text-align-right',
-						],
-					],
-					'default' => '',
-					'selectors' => [
+							'icon'  => 'eicon-text-align-right',
+						),
+					),
+					'default'   => '',
+					'selectors' => array(
 						'{{WRAPPER}} span.slick-slide' => 'justify-content: {{VALUE}};',
-					],
-				]
+					),
+				)
 			);
-			
+
 			$this->add_responsive_control(
 				'icon_position',
-				[
-					'label' => __( 'Icon position', 'elementor' ),
-					'type' => \Elementor\Controls_Manager::CHOOSE,
-					'options' => [
-						'row' => [
+				array(
+					'label'     => __( 'Icon position', 'elementor' ),
+					'type'      => \Elementor\Controls_Manager::CHOOSE,
+					'options'   => array(
+						'row'         => array(
 							'title' => __( 'Left', 'elementor' ),
-							'icon' => 'eicon-text-align-left',
-						],
-						
-						'row-reverse' => [
+							'icon'  => 'eicon-text-align-left',
+						),
+
+						'row-reverse' => array(
 							'title' => __( 'Right', 'elementor' ),
-							'icon' => 'eicon-text-align-right',
-						],
-						
-					],
-					'default' => 'row',
-					'selectors' => [
+							'icon'  => 'eicon-text-align-right',
+						),
+
+					),
+					'default'   => 'row',
+					'selectors' => array(
 						'{{WRAPPER}} span.slick-slide' => 'display: flex; flex-direction: {{VALUE}}',
-					],
-				]
-			);	
-		
+					),
+				)
+			);
+
 		$this->end_controls_section();
-		
+
 		$this->style_tab();
 
 	}
-	
-	
-	private function style_tab(){
-		
+
+
+	private function style_tab() {
+
 		$this->start_controls_section(
 			'section_content_style',
-			[
+			array(
 				'label' => esc_html__( 'Content', 'elementor' ),
-				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-			]
+				'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+			)
 		);
-			
+
 			$this->add_control(
 				'text_color_heading',
-				[
-					'label' => esc_html__( 'Text', ANOEL_TEXTDOM ),
-					'type' => \Elementor\Controls_Manager::HEADING,
+				array(
+					'label'     => esc_html__( 'Text', ANOEL_TEXTDOM ),
+					'type'      => \Elementor\Controls_Manager::HEADING,
 					'separator' => 'before',
-				]
-			);
-			
-			$this->add_control(
-				'content_color',
-				[
-					'label' => esc_html__( 'Color', ANOEL_TEXTDOM ),
-					'type' => \Elementor\Controls_Manager::COLOR,
-					'selectors' => [
-						'{{WRAPPER}} .anoshc-slick-vtext span:not(i)' => 'color: {{VALUE}}'
-					],
-				]
-			);
-			
-			$this->add_group_control(
-				\Elementor\Group_Control_Typography::get_type(),
-				[
-					'name' => 'text_typography',
-					'label' => esc_html__( 'Typography', 'elementor' ),
-					'scheme' => Elementor\Core\Schemes\Typography::TYPOGRAPHY_1,
-					'selector' => '{{WRAPPER}} .anoshc-slick-vtext span:not(i)',
-				]
-			);
-			
-			$this->add_control(
-				'icon_color_heading',
-				[
-					'label' => esc_html__( 'Icon', ANOEL_TEXTDOM ),
-					'type' => \Elementor\Controls_Manager::HEADING,
-					'separator' => 'before',
-				]
-			);
-			
-			$this->add_control(
-				'icon_color',
-				[
-					'label' => esc_html__( 'Color', ANOEL_TEXTDOM ),
-					'type' => \Elementor\Controls_Manager::COLOR,
-					'selectors' => [
-						'{{WRAPPER}} .anoshc-slick-vtext span > i' => 'color: {{VALUE}}'
-					],
-				]
-			);
-			
-			$this->add_responsive_control(
-				'size',
-				[
-					'label' => __( 'Size', 'elementor' ),
-					'type' => \Elementor\Controls_Manager::SLIDER,
-					'range' => [
-						'px' => [
-							'min' => 6,
-							'max' => 300,
-						],
-					],
-					'selectors' => [
-						'{{WRAPPER}} span.slick-slide i' => 'font-size: {{SIZE}}{{UNIT}};',
-					],
-					'separator' => 'before',
-				]
-			);
-			
-			$this->add_responsive_control(
-				'space_between',
-				[
-					'label' => __( 'Space Between', 'elementor' ),
-					'type' => \Elementor\Controls_Manager::SLIDER,
-					'range' => [
-						'px' => [
-							'max' => 50,
-						],
-					],
-					'selectors' => [
-						
-						'body.rtl {{WRAPPER}} span.slick-slide i' => 'margin-left: {{SIZE}}{{UNIT}}',
-						'body:not(.rtl) {{WRAPPER}} span.slick-slide i' => 'margin-right: {{SIZE}}{{UNIT}}',
-					],
-				]
+				)
 			);
 
-			
-		
-		
+			$this->add_control(
+				'content_color',
+				array(
+					'label'     => esc_html__( 'Color', ANOEL_TEXTDOM ),
+					'type'      => \Elementor\Controls_Manager::COLOR,
+					'selectors' => array(
+						'{{WRAPPER}} .anoshc-slick-vtext span:not(i)' => 'color: {{VALUE}}',
+					),
+				)
+			);
+
+			$this->add_group_control(
+				\Elementor\Group_Control_Typography::get_type(),
+				array(
+					'name'     => 'text_typography',
+					'label'    => esc_html__( 'Typography', 'elementor' ),
+					'scheme'   => Elementor\Core\Schemes\Typography::TYPOGRAPHY_1,
+					'selector' => '{{WRAPPER}} .anoshc-slick-vtext span:not(i)',
+				)
+			);
+
+			$this->add_control(
+				'icon_color_heading',
+				array(
+					'label'     => esc_html__( 'Icon', ANOEL_TEXTDOM ),
+					'type'      => \Elementor\Controls_Manager::HEADING,
+					'separator' => 'before',
+				)
+			);
+
+			$this->add_control(
+				'icon_color',
+				array(
+					'label'     => esc_html__( 'Color', ANOEL_TEXTDOM ),
+					'type'      => \Elementor\Controls_Manager::COLOR,
+					'selectors' => array(
+						'{{WRAPPER}} .anoshc-slick-vtext span > i' => 'color: {{VALUE}}',
+					),
+				)
+			);
+
+			$this->add_responsive_control(
+				'size',
+				array(
+					'label'     => __( 'Size', 'elementor' ),
+					'type'      => \Elementor\Controls_Manager::SLIDER,
+					'range'     => array(
+						'px' => array(
+							'min' => 6,
+							'max' => 300,
+						),
+					),
+					'selectors' => array(
+						'{{WRAPPER}} span.slick-slide i' => 'font-size: {{SIZE}}{{UNIT}};',
+					),
+					'separator' => 'before',
+				)
+			);
+
+			$this->add_responsive_control(
+				'space_between',
+				array(
+					'label'     => __( 'Space Between', 'elementor' ),
+					'type'      => \Elementor\Controls_Manager::SLIDER,
+					'range'     => array(
+						'px' => array(
+							'max' => 50,
+						),
+					),
+					'selectors' => array(
+
+						'body.rtl {{WRAPPER}} span.slick-slide i' => 'margin-left: {{SIZE}}{{UNIT}}',
+						'body:not(.rtl) {{WRAPPER}} span.slick-slide i' => 'margin-right: {{SIZE}}{{UNIT}}',
+					),
+				)
+			);
+
 		$this->end_controls_section();
 	}
 
@@ -347,51 +358,51 @@ class ANONY_Extension_Vertical_Text_Slider extends \Elementor\Widget_Base {
 	 * @access protected
 	 */
 	protected function render() {
-		
+
 		$settings = $this->get_settings_for_display();
-		
+
 		$this->add_render_attribute( 'vertical_slider_list', 'class', 'anoshc-slick-vtext' );
-		
+
 		if ( 'row-reverse' === $settings['icon_position'] ) {
 			$this->add_render_attribute( 'vertical_slider_list_item', 'class', 'row-reverse' );
-			
-		}else{
+
+		} else {
 			$this->add_render_attribute( 'vertical_slider_list_item', 'class', 'row' );
 		}
-		
+
 		$icon_position = $settings['icon_position'];
-		
-		if ( $settings['vertical_slider_list'] && !empty($settings['vertical_slider_list']) ) {
-			
-			$data = [];
-			
-			foreach ($settings['vertical_slider_list'] as $index => $item) {
-				
-				$temp['content'] = $item['item_content'];
-				$temp['icon'] = $item['content_icon']['value'];
+
+		if ( $settings['vertical_slider_list'] && ! empty( $settings['vertical_slider_list'] ) ) {
+
+			$data = array();
+
+			foreach ( $settings['vertical_slider_list'] as $index => $item ) {
+
+				$temp['content']      = $item['item_content'];
+				$temp['icon']         = $item['content_icon']['value'];
 				$temp['content_icon'] = $item['content_icon'];
-				
+
 				$data[] = $temp;
-				
+
 			}
-		
-			if(empty($data)){
+
+			if ( empty( $data ) ) {
 				esc_html_e( 'Please add some items' );
-				
+
 				return;
 			}
-			
-			
+
 			include wp_normalize_path( ANOEL_DIR . 'templates/vertical-text-slider.php' );
 		}
-		
-	?>
+
+		?>
 	
 	
 
-	<?php }
-	
-	
+		<?php
+	}
+
+
 	/**
 	 * Render Vertical text slider widget output on the backend editor.
 	 *
@@ -400,7 +411,7 @@ class ANONY_Extension_Vertical_Text_Slider extends \Elementor\Widget_Base {
 	 * @since 1.0.0
 	 * @access protected
 	 */
-	protected function _content_template() {
+	protected function content_template() {
 
 		?>
 		
@@ -433,5 +444,6 @@ class ANONY_Extension_Vertical_Text_Slider extends \Elementor\Widget_Base {
 		</div>
 		
 
-	<?php }
+		<?php
+	}
 }
