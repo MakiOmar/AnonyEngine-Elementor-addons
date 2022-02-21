@@ -229,13 +229,13 @@ final class ANOEL_Elements_Loader {
 
 		// Check for required Elementor version.
 		if ( ! version_compare( ELEMENTOR_VERSION, self::MINIMUM_ELEMENTOR_VERSION, '>=' ) ) {
-			add_action( 'admin_notices', array( $this, 'minimumElementorVersion' ) );
+			add_action( 'admin_notices', array( $this, 'minimum_elementor_version' ) );
 			return;
 		}
 
 		// Check for required PHP version.
 		if ( version_compare( PHP_VERSION, self::MINIMUM_PHP_VERSION, '<' ) ) {
-			add_action( 'admin_notices', array( $this, 'minimumPhpVersion' ) );
+			add_action( 'admin_notices', array( $this, 'minimum_php_version' ) );
 			return;
 		}
 
@@ -279,12 +279,12 @@ final class ANOEL_Elements_Loader {
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor */
-			esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'anonyengine-elements' ),
-			'<strong>' . esc_html__( 'AnonyEngine Elements', 'anonyengine-elements' ) . '</strong>',
-			'<strong>' . esc_html__( 'Elementor', 'anonyengine-elements' ) . '</strong>'
+			__( '"%1$s" requires "%2$s" to be installed and activated.', 'anonyengine-elements' ),
+			'<strong>' . __( 'AnonyEngine Elements', 'anonyengine-elements' ) . '</strong>',
+			'<strong>' . __( 'Elementor', 'anonyengine-elements' ) . '</strong>'
 		);
 
-		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
+		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', wp_kses( $message, array( 'strong' => array() ) ) );
 
 	}
 
@@ -297,7 +297,7 @@ final class ANOEL_Elements_Loader {
 	 *
 	 * @access public
 	 */
-	public function minimumElementorVersion() {
+	public function minimum_elementor_version() {
 
 		if ( isset( $_GET['activate'] ) ) {
 			unset( $_GET['activate'] );
@@ -305,13 +305,13 @@ final class ANOEL_Elements_Loader {
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor 3: Required Elementor version */
-			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'anonyengine-elements' ),
-			'<strong>' . esc_html__( 'AnonyEngine Elements', 'anonyengine-elements' ) . '</strong>',
-			'<strong>' . esc_html__( 'Elementor', 'anonyengine-elements' ) . '</strong>',
+			__( '"%1$s" requires "%2$s" version %3$s or greater.', 'anonyengine-elements' ),
+			'<strong>' . __( 'AnonyEngine Elements', 'anonyengine-elements' ) . '</strong>',
+			'<strong>' . __( 'Elementor', 'anonyengine-elements' ) . '</strong>',
 			self::MINIMUM_ELEMENTOR_VERSION
 		);
 
-		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
+		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', wp_kses( $message, array( 'strong' => array() ) ) );
 
 	}
 
@@ -324,7 +324,7 @@ final class ANOEL_Elements_Loader {
 	 *
 	 * @access public
 	 */
-	public function minimumPhpVersion() {
+	public function minimum_php_version() {
 
 		if ( isset( $_GET['activate'] ) ) {
 			unset( $_GET['activate'] );
@@ -332,13 +332,13 @@ final class ANOEL_Elements_Loader {
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: PHP 3: Required PHP version */
-			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'anonyengine-elements' ),
-			'<strong>' . esc_html__( 'AnonyEngine Elements', 'anonyengine-elements' ) . '</strong>',
-			'<strong>' . esc_html__( 'PHP', 'anonyengine-elements' ) . '</strong>',
+			__( '"%1$s" requires "%2$s" version %3$s or greater.', 'anonyengine-elements' ),
+			'<strong>' . __( 'AnonyEngine Elements', 'anonyengine-elements' ) . '</strong>',
+			'<strong>' . __( 'PHP', 'anonyengine-elements' ) . '</strong>',
 			self::MINIMUM_PHP_VERSION
 		);
 
-		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
+		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', wp_kses( $message, array( 'strong' => array() ) ) );
 
 	}
 
@@ -366,7 +366,7 @@ final class ANOEL_Elements_Loader {
 		foreach ( $widgets as $widget ) {
 			if ( class_exists( $widget ) ) {
 
-				// Register widget
+				// Register widget.
 				\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new $widget() );
 			}
 		}
@@ -384,14 +384,11 @@ final class ANOEL_Elements_Loader {
 	 */
 	public function init_controls() {
 
-		/*
-		// Include Control files
-		require_once( ANOEL_CONTROLS_CLASSES . '/test.php' );
+		// Include Control files.
+		// require_once( ANOEL_CONTROLS_CLASSES . '/test.php' );.
 
-		// Register control
-		\Elementor\Plugin::$instance->controls_manager->register_control( 'control-type-', new \ANOEL_Elements_Control() );
-		*/
-
+		// Register control.
+		// \Elementor\Plugin::$instance->controls_manager->register_control( 'control-type-', new \ANOEL_Elements_Control() );.
 	}
 
 }
