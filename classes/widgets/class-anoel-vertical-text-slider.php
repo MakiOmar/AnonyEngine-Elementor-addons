@@ -323,8 +323,7 @@ class ANOEL_Vertical_Text_Slider extends \Elementor\Widget_Base {
 					),
 					'selectors' => array(
 						'{{WRAPPER}} span.slick-slide i' => 'font-size: {{SIZE}}{{UNIT}};',
-					),
-					'separator' => 'before',
+					)
 				)
 			);
 
