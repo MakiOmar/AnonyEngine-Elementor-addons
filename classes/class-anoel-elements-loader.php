@@ -136,7 +136,7 @@ final class ANOEL_Elements_Loader {
 		wp_enqueue_script( 'jquery' );
 		
 		$scripts = array(
-			'slick-vtext' => 'slick-vtext-slider',
+			'slick-vtext' => 'slick-vtext-slider.min',
 			'headpshot-init' => 'headpshot-init',
 			'animated-icon-list' => 'animated-icon-list',
 			'skew-carousel' => 'skew-carousel',
