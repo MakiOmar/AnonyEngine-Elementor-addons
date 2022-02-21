@@ -36,7 +36,7 @@ class ANOEL_Repeater extends \Elementor\Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Repeater', ANOEL_TEXTDOM );
+		return __( 'Repeater', 'anonyengine-elements' );
 	}
 	
 	/**
@@ -99,7 +99,7 @@ class ANOEL_Repeater extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'content_section',
 			[
-				'label' => __( 'Content', ANOEL_TEXTDOM ),
+				'label' => __( 'Content', 'anonyengine-elements' ),
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -147,7 +147,7 @@ class ANOEL_Repeater extends \Elementor\Widget_Base {
 			$repeater->add_control(
 				'icon',
 				[
-					'label' => __( 'Icon', ANOEL_TEXTDOM ),
+					'label' => __( 'Icon', 'anonyengine-elements' ),
 					'type' => \Elementor\Controls_Manager::ICONS,
 					'default' => [
 						'value' => 'fas fa-star',
@@ -205,11 +205,11 @@ class ANOEL_Repeater extends \Elementor\Widget_Base {
 			
 			<ul class="anoshc-slick-vtext">
 				
-				<li><i class="fa fa-cc-visa" aria-hidden="true"></i><?= esc_html__( ' Secure payment', ANOEL_TEXTDOM ) ?></li>
-				<li><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><?= esc_html__( ' 100% Authentic Products', ANOEL_TEXTDOM ) ?></li>
-				<li><i class="fa fa-truck" aria-hidden="true"></i><?= esc_html__( ' Express delivery available from 8 am to 12:30 am', ANOEL_TEXTDOM ) ?></li>
-				<li><i class="fa fa-gift" aria-hidden="true"></i><?= esc_html__( ' Free Delivery Within 6 business days', ANOEL_TEXTDOM ) ?></li>
-				<li><i class="fa fa-usd" aria-hidden="true"></i><?= esc_html__( ' Limited Time Exclusive Offers', ANOEL_TEXTDOM ) ?></li>
+				<li><i class="fa fa-cc-visa" aria-hidden="true"></i><?= esc_html__( ' Secure payment', 'anonyengine-elements' ) ?></li>
+				<li><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><?= esc_html__( ' 100% Authentic Products', 'anonyengine-elements' ) ?></li>
+				<li><i class="fa fa-truck" aria-hidden="true"></i><?= esc_html__( ' Express delivery available from 8 am to 12:30 am', 'anonyengine-elements' ) ?></li>
+				<li><i class="fa fa-gift" aria-hidden="true"></i><?= esc_html__( ' Free Delivery Within 6 business days', 'anonyengine-elements' ) ?></li>
+				<li><i class="fa fa-usd" aria-hidden="true"></i><?= esc_html__( ' Limited Time Exclusive Offers', 'anonyengine-elements' ) ?></li>
 				
 			</ul>
 			

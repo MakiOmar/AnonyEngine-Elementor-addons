@@ -36,7 +36,7 @@ class ANOEL_Animated_Icon_List extends \Elementor\Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Animated icon list', ANOEL_TEXTDOM );
+		return __( 'Animated icon list', 'anonyengine-elements' );
 	}
 	
 	/**
@@ -113,7 +113,7 @@ class ANOEL_Animated_Icon_List extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'content_section',
 			[
-				'label' => esc_html__( 'Content', ANOEL_TEXTDOM ),
+				'label' => esc_html__( 'Content', 'anonyengine-elements' ),
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -123,7 +123,7 @@ class ANOEL_Animated_Icon_List extends \Elementor\Widget_Base {
 			$repeater->add_control(
 				'content_number',
 				[
-					'label' => esc_html__( 'Number or text', ANOEL_TEXTDOM ),
+					'label' => esc_html__( 'Number or text', 'anonyengine-elements' ),
 					'type' => \Elementor\Controls_Manager::TEXT,
 					'default' => '01',
 				]
@@ -132,7 +132,7 @@ class ANOEL_Animated_Icon_List extends \Elementor\Widget_Base {
 			$repeater->add_control(
 				'content_icon',
 				[
-					'label' => esc_html__( 'Icon', ANOEL_TEXTDOM ),
+					'label' => esc_html__( 'Icon', 'anonyengine-elements' ),
 					'type' => \Elementor\Controls_Manager::ICONS,
 					'default' => [
 						'value' => 'fas fa-star',
@@ -144,9 +144,9 @@ class ANOEL_Animated_Icon_List extends \Elementor\Widget_Base {
 			
 			$repeater->add_control(
 				'item_content', [
-					'label' => esc_html__( 'Title', ANOEL_TEXTDOM ),
+					'label' => esc_html__( 'Title', 'anonyengine-elements' ),
 					'type' => \Elementor\Controls_Manager::TEXT,
-					'default' => esc_html__( 'Add your title here' , ANOEL_TEXTDOM ),
+					'default' => esc_html__( 'Add your title here' , 'anonyengine-elements' ),
 					'show_label' => false,
 					'dynamic' => [
 						'active' => true,
@@ -157,19 +157,19 @@ class ANOEL_Animated_Icon_List extends \Elementor\Widget_Base {
 			$this->add_control(
 				'animated_icon_list',
 				[
-					'label' => esc_html__( 'Animated icon list', ANOEL_TEXTDOM ),
+					'label' => esc_html__( 'Animated icon list', 'anonyengine-elements' ),
 					'type' => \Elementor\Controls_Manager::REPEATER,
 					'fields' => $repeater->get_controls(),
 					'default' => [
 						[
-							'item_content' => esc_html__( 'Item content #1', ANOEL_TEXTDOM ),
+							'item_content' => esc_html__( 'Item content #1', 'anonyengine-elements' ),
 							'content_icon' => [
 								'value' => 'fas fa-check',
 								'library' => 'fa-solid',
 							],
 						],
 						[
-							'item_content' => esc_html__( 'Item content #2', ANOEL_TEXTDOM ),
+							'item_content' => esc_html__( 'Item content #2', 'anonyengine-elements' ),
 							'content_icon' => [
 								'value' => 'fas fa-times',
 								'library' => 'fa-solid',
@@ -177,7 +177,7 @@ class ANOEL_Animated_Icon_List extends \Elementor\Widget_Base {
 						],
 						
 						[
-							'item_content' => esc_html__( 'Item content #3', ANOEL_TEXTDOM ),
+							'item_content' => esc_html__( 'Item content #3', 'anonyengine-elements' ),
 							'content_icon' => [
 								'value' => 'fas fa-dot-circle',
 								'library' => 'fa-solid',
@@ -258,7 +258,7 @@ class ANOEL_Animated_Icon_List extends \Elementor\Widget_Base {
 			$this->add_control(
 				'text_color_heading',
 				[
-					'label' => esc_html__( 'Text', ANOEL_TEXTDOM ),
+					'label' => esc_html__( 'Text', 'anonyengine-elements' ),
 					'type' => \Elementor\Controls_Manager::HEADING,
 					'separator' => 'before',
 				]
@@ -267,7 +267,7 @@ class ANOEL_Animated_Icon_List extends \Elementor\Widget_Base {
 			$this->add_control(
 				'content_color',
 				[
-					'label' => esc_html__( 'Color', ANOEL_TEXTDOM ),
+					'label' => esc_html__( 'Color', 'anonyengine-elements' ),
 					'type' => \Elementor\Controls_Manager::COLOR,
 					'selectors' => [
 						'{{WRAPPER}} .anoshc-animated-icon-list div:not(i)' => 'color: {{VALUE}}'
@@ -288,7 +288,7 @@ class ANOEL_Animated_Icon_List extends \Elementor\Widget_Base {
 			$this->add_control(
 				'icon_color_heading',
 				[
-					'label' => esc_html__( 'Icon', ANOEL_TEXTDOM ),
+					'label' => esc_html__( 'Icon', 'anonyengine-elements' ),
 					'type' => \Elementor\Controls_Manager::HEADING,
 					'separator' => 'before',
 				]
@@ -297,7 +297,7 @@ class ANOEL_Animated_Icon_List extends \Elementor\Widget_Base {
 			$this->add_control(
 				'icon_color',
 				[
-					'label' => esc_html__( 'Color', ANOEL_TEXTDOM ),
+					'label' => esc_html__( 'Color', 'anonyengine-elements' ),
 					'type' => \Elementor\Controls_Manager::COLOR,
 					'selectors' => [
 						'{{WRAPPER}} .anoshc-animated-icon-list div > i' => 'color: {{VALUE}}'

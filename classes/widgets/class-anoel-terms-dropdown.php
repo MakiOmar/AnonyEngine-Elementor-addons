@@ -39,7 +39,7 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Terms dropdown', ANOEL_TEXTDOM );
+		return __( 'Terms dropdown', 'anonyengine-elements' );
 	}
 	
 	/**
@@ -116,7 +116,7 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'content_section',
 			[
-				'label' => esc_html__( 'Settings', ANOEL_TEXTDOM ),
+				'label' => esc_html__( 'Settings', 'anonyengine-elements' ),
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -125,7 +125,7 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 			$this->add_control(
 				'post_type',
 				[
-					'label' => esc_html__( 'Post type', ANOEL_TEXTDOM ),
+					'label' => esc_html__( 'Post type', 'anonyengine-elements' ),
 					'type' => \Elementor\Controls_Manager::SELECT,
 					'options' => get_post_types(['public' => true]),
 					'default' => 'post',
@@ -136,7 +136,7 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 			$this->add_control(
 				'taxonomy',
 				[
-					'label' => esc_html__( 'Taxonomy', ANOEL_TEXTDOM ),
+					'label' => esc_html__( 'Taxonomy', 'anonyengine-elements' ),
 					'type' => \Elementor\Controls_Manager::SELECT,
 					'options' => get_taxonomies(['public' => true]),
 					'default' => 'category',
@@ -147,7 +147,7 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 			$this->add_control(
 				'terms',
 				[
-					'label' => esc_html__( 'Terms', ANOEL_TEXTDOM ),
+					'label' => esc_html__( 'Terms', 'anonyengine-elements' ),
 					'label_block' => true,
 					'type' => \Elementor\Controls_Manager::SELECT2,
 					'multiple' => true,

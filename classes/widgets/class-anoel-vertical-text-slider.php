@@ -48,7 +48,7 @@ class ANOEL_Vertical_Text_Slider extends \Elementor\Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Vertical text slider', ANOEL_TEXTDOM );
+		return __( 'Vertical text slider', 'anonyengine-elements' );
 	}
 
 	/**
@@ -127,7 +127,7 @@ class ANOEL_Vertical_Text_Slider extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'content_section',
 			array(
-				'label' => esc_html__( 'Content', ANOEL_TEXTDOM ),
+				'label' => esc_html__( 'Content', 'anonyengine-elements' ),
 				'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -137,7 +137,7 @@ class ANOEL_Vertical_Text_Slider extends \Elementor\Widget_Base {
 			$repeater->add_control(
 				'content_icon',
 				array(
-					'label'   => esc_html__( 'Icon', ANOEL_TEXTDOM ),
+					'label'   => esc_html__( 'Icon', 'anonyengine-elements' ),
 					'type'    => \Elementor\Controls_Manager::ICONS,
 					'default' => array(
 						'value'   => 'fas fa-star',
@@ -149,9 +149,9 @@ class ANOEL_Vertical_Text_Slider extends \Elementor\Widget_Base {
 			$repeater->add_control(
 				'item_content',
 				array(
-					'label'      => esc_html__( 'Content', ANOEL_TEXTDOM ),
+					'label'      => esc_html__( 'Content', 'anonyengine-elements' ),
 					'type'       => \Elementor\Controls_Manager::TEXT,
-					'default'    => esc_html__( 'Add your content here', ANOEL_TEXTDOM ),
+					'default'    => esc_html__( 'Add your content here', 'anonyengine-elements' ),
 					'show_label' => false,
 					'dynamic'    => array(
 						'active' => true,
@@ -162,19 +162,19 @@ class ANOEL_Vertical_Text_Slider extends \Elementor\Widget_Base {
 			$this->add_control(
 				'vertical_slider_list',
 				array(
-					'label'       => esc_html__( 'Vertical text slider List', ANOEL_TEXTDOM ),
+					'label'       => esc_html__( 'Vertical text slider List', 'anonyengine-elements' ),
 					'type'        => \Elementor\Controls_Manager::REPEATER,
 					'fields'      => $repeater->get_controls(),
 					'default'     => array(
 						array(
-							'item_content' => esc_html__( 'Item content #1', ANOEL_TEXTDOM ),
+							'item_content' => esc_html__( 'Item content #1', 'anonyengine-elements' ),
 							'content_icon' => array(
 								'value'   => 'fas fa-check',
 								'library' => 'fa-solid',
 							),
 						),
 						array(
-							'item_content' => esc_html__( 'Item content #2', ANOEL_TEXTDOM ),
+							'item_content' => esc_html__( 'Item content #2', 'anonyengine-elements' ),
 							'content_icon' => array(
 								'value'   => 'fas fa-times',
 								'library' => 'fa-solid',
@@ -182,7 +182,7 @@ class ANOEL_Vertical_Text_Slider extends \Elementor\Widget_Base {
 						),
 
 						array(
-							'item_content' => esc_html__( 'Item content #3', ANOEL_TEXTDOM ),
+							'item_content' => esc_html__( 'Item content #3', 'anonyengine-elements' ),
 							'content_icon' => array(
 								'value'   => 'fas fa-dot-circle',
 								'library' => 'fa-solid',
@@ -263,7 +263,7 @@ class ANOEL_Vertical_Text_Slider extends \Elementor\Widget_Base {
 			$this->add_control(
 				'text_color_heading',
 				array(
-					'label'     => esc_html__( 'Text', ANOEL_TEXTDOM ),
+					'label'     => esc_html__( 'Text', 'anonyengine-elements' ),
 					'type'      => \Elementor\Controls_Manager::HEADING,
 					'separator' => 'before',
 				)
@@ -272,7 +272,7 @@ class ANOEL_Vertical_Text_Slider extends \Elementor\Widget_Base {
 			$this->add_control(
 				'content_color',
 				array(
-					'label'     => esc_html__( 'Color', ANOEL_TEXTDOM ),
+					'label'     => esc_html__( 'Color', 'anonyengine-elements' ),
 					'type'      => \Elementor\Controls_Manager::COLOR,
 					'selectors' => array(
 						'{{WRAPPER}} .anoshc-slick-vtext span:not(i)' => 'color: {{VALUE}}',
@@ -293,7 +293,7 @@ class ANOEL_Vertical_Text_Slider extends \Elementor\Widget_Base {
 			$this->add_control(
 				'icon_color_heading',
 				array(
-					'label'     => esc_html__( 'Icon', ANOEL_TEXTDOM ),
+					'label'     => esc_html__( 'Icon', 'anonyengine-elements' ),
 					'type'      => \Elementor\Controls_Manager::HEADING,
 					'separator' => 'before',
 				)
@@ -302,7 +302,7 @@ class ANOEL_Vertical_Text_Slider extends \Elementor\Widget_Base {
 			$this->add_control(
 				'icon_color',
 				array(
-					'label'     => esc_html__( 'Color', ANOEL_TEXTDOM ),
+					'label'     => esc_html__( 'Color', 'anonyengine-elements' ),
 					'type'      => \Elementor\Controls_Manager::COLOR,
 					'selectors' => array(
 						'{{WRAPPER}} .anoshc-slick-vtext span > i' => 'color: {{VALUE}}',

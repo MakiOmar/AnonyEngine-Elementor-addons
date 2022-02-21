@@ -35,7 +35,7 @@ class ANOEL_Oembed extends \Elementor\Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'oEmbed', ANOEL_TEXTDOM );
+		return __( 'oEmbed', 'anonyengine-elements' );
 	}
 
 	/**
@@ -79,7 +79,7 @@ class ANOEL_Oembed extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'content_section',
 			[
-				'label' => __( 'Content', ANOEL_TEXTDOM ),
+				'label' => __( 'Content', 'anonyengine-elements' ),
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -87,10 +87,10 @@ class ANOEL_Oembed extends \Elementor\Widget_Base {
 		$this->add_control(
 			'url',
 			[
-				'label' => __( 'URL to embed', ANOEL_TEXTDOM ),
+				'label' => __( 'URL to embed', 'anonyengine-elements' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
 				'input_type' => 'url',
-				'placeholder' => __( 'https://your-link.com', ANOEL_TEXTDOM ),
+				'placeholder' => __( 'https://your-link.com', 'anonyengine-elements' ),
 			]
 		);
 

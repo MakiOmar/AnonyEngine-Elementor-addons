@@ -40,7 +40,7 @@ define( 'ANOEL_URI', plugin_dir_url( __FILE__ ) );
  *
  * @const
  */
-define( 'ANOEL_TEXTDOM', 'anonyengine-elements' );
+define( ''anonyengine-elements'', 'anonyengine-elements' );
 
 /**
  * Holds plugin's classes

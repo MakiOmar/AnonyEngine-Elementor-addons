@@ -35,7 +35,7 @@ class ANOEL_Simple_Content extends \Elementor\Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Simple content', ANOEL_TEXTDOM );
+		return __( 'Simple content', 'anonyengine-elements' );
 	}
 	
 	/**
@@ -89,7 +89,7 @@ class ANOEL_Simple_Content extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'content_label',
 			[
-				'label' => __( 'Your content', ANOEL_TEXTDOM ),
+				'label' => __( 'Your content', 'anonyengine-elements' ),
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -97,7 +97,7 @@ class ANOEL_Simple_Content extends \Elementor\Widget_Base {
 		$this->add_control(
 			'more_options',
 			[
-				'label' => __( 'Additional Options', ANOEL_TEXTDOM ),
+				'label' => __( 'Additional Options', 'anonyengine-elements' ),
 				'type' => \Elementor\Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
@@ -105,9 +105,9 @@ class ANOEL_Simple_Content extends \Elementor\Widget_Base {
 		$this->add_control(
 			'content_heading',
 			[
-				'label' => __( 'Heading', ANOEL_TEXTDOM ),
+				'label' => __( 'Heading', 'anonyengine-elements' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => esc_html__( 'Add your heading', ANOEL_TEXTDOM ),
+				'default' => esc_html__( 'Add your heading', 'anonyengine-elements' ),
 			]
 		);
 		
@@ -115,7 +115,7 @@ class ANOEL_Simple_Content extends \Elementor\Widget_Base {
 		$this->add_control(
 			'image',
 			[
-				'label' => __( 'Choose Image', ANOEL_TEXTDOM ),
+				'label' => __( 'Choose Image', 'anonyengine-elements' ),
 				'type' => \Elementor\Controls_Manager::MEDIA,
 				'default' => [
 					'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -126,7 +126,7 @@ class ANOEL_Simple_Content extends \Elementor\Widget_Base {
 		$this->add_control(
 			'show_image_link',
 			[
-				'label' => __( 'Show image url', ANOEL_TEXTDOM ),
+				'label' => __( 'Show image url', 'anonyengine-elements' ),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
 				'label_on' => __( 'Show', 'your-plugin' ),
 				'label_off' => __( 'Hide', 'your-plugin' ),
@@ -139,9 +139,9 @@ class ANOEL_Simple_Content extends \Elementor\Widget_Base {
 		$this->add_control(
 			'image_link',
 			[
-				'label' => __( 'Image URL', ANOEL_TEXTDOM ),
+				'label' => __( 'Image URL', 'anonyengine-elements' ),
 				'type' => \Elementor\Controls_Manager::URL,
-				'placeholder' => __( 'https://your-link.com', ANOEL_TEXTDOM ),
+				'placeholder' => __( 'https://your-link.com', 'anonyengine-elements' ),
 				'show_external' => true,
 				'default' => [
 					'url' => '',
@@ -168,7 +168,7 @@ class ANOEL_Simple_Content extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'image_style',
 			[
-				'label' => __( 'Image', ANOEL_TEXTDOM ),
+				'label' => __( 'Image', 'anonyengine-elements' ),
 				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -178,7 +178,7 @@ class ANOEL_Simple_Content extends \Elementor\Widget_Base {
 				[
 					'label' => __( 'Width', 'plugin-domain' ),
 					'type' =>  \Elementor\Controls_Manager::SLIDER,
-					'description' =>  esc_html__( 'Default 100%', ANOEL_TEXTDOM ),
+					'description' =>  esc_html__( 'Default 100%', 'anonyengine-elements' ),
 					'size_units' => [ 'px', '%' ],
 					'range' => [
 						'px' => [
@@ -224,7 +224,7 @@ class ANOEL_Simple_Content extends \Elementor\Widget_Base {
 			$this->add_control(
 				'image_border',
 				[
-					'label' => esc_html__( 'Border', ANOEL_TEXTDOM ),
+					'label' => esc_html__( 'Border', 'anonyengine-elements' ),
 					'type' => \Elementor\Controls_Manager::HEADING,
 					'separator' => 'before',
 				]
@@ -239,7 +239,7 @@ class ANOEL_Simple_Content extends \Elementor\Widget_Base {
 				$this->start_controls_tab(
 					'image_style_normal_tab',
 					[
-						'label' => esc_html__( 'Normal', ANOEL_TEXTDOM ),
+						'label' => esc_html__( 'Normal', 'anonyengine-elements' ),
 					]
 				);
 					
@@ -247,7 +247,7 @@ class ANOEL_Simple_Content extends \Elementor\Widget_Base {
 						\Elementor\Group_Control_Border::get_type(),
 						[
 							'name' => 'normal-border',
-							'label' => esc_html__( 'Border', ANOEL_TEXTDOM ),
+							'label' => esc_html__( 'Border', 'anonyengine-elements' ),
 							'selector' => '{{WRAPPER}} .test-width',
 						]
 					);
@@ -258,7 +258,7 @@ class ANOEL_Simple_Content extends \Elementor\Widget_Base {
 				$this->start_controls_tab(
 					'image_style_hover_tab',
 					[
-						'label' => esc_html__( 'Hover', ANOEL_TEXTDOM ),
+						'label' => esc_html__( 'Hover', 'anonyengine-elements' ),
 					]
 				);
 				
@@ -266,7 +266,7 @@ class ANOEL_Simple_Content extends \Elementor\Widget_Base {
 						\Elementor\Group_Control_Border::get_type(),
 						[
 							'name' => 'hover-border',
-							'label' => esc_html__( 'Border', ANOEL_TEXTDOM ),
+							'label' => esc_html__( 'Border', 'anonyengine-elements' ),
 							'selector' => '{{WRAPPER}} .test-width:hover',
 						]
 					);

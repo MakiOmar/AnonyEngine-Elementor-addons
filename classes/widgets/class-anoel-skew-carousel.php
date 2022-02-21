@@ -39,7 +39,7 @@ class ANOEL_Skew_Carousel extends \Elementor\Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Skew carousel', ANOEL_TEXTDOM );
+		return __( 'Skew carousel', 'anonyengine-elements' );
 	}
 	
 	/**
@@ -116,7 +116,7 @@ class ANOEL_Skew_Carousel extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'content_section',
 			[
-				'label' => esc_html__( 'Content', ANOEL_TEXTDOM ),
+				'label' => esc_html__( 'Content', 'anonyengine-elements' ),
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -126,7 +126,7 @@ class ANOEL_Skew_Carousel extends \Elementor\Widget_Base {
 			
 			$repeater->add_control(
 				'item_image_1', [
-					'label' => esc_html__( 'Main image', ANOEL_TEXTDOM ),
+					'label' => esc_html__( 'Main image', 'anonyengine-elements' ),
 					'type' => \Elementor\Controls_Manager::MEDIA,
 					'default' => [
 						'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -137,7 +137,7 @@ class ANOEL_Skew_Carousel extends \Elementor\Widget_Base {
 			
 			$repeater->add_control(
 				'item_image_2', [
-					'label' => esc_html__( 'Hover image', ANOEL_TEXTDOM ),
+					'label' => esc_html__( 'Hover image', 'anonyengine-elements' ),
 					'type' => \Elementor\Controls_Manager::MEDIA,
 					'default' => [
 						'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -148,7 +148,7 @@ class ANOEL_Skew_Carousel extends \Elementor\Widget_Base {
 			
 			$repeater->add_control(
 				'item_description', [
-					'label' => esc_html__( 'Description', ANOEL_TEXTDOM ),
+					'label' => esc_html__( 'Description', 'anonyengine-elements' ),
 					'type' => \Elementor\Controls_Manager::WYSIWYG,
 					'default' => '<p>' . __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'elementor' ) . '</p>',
 					'show_label' => true,
@@ -158,7 +158,7 @@ class ANOEL_Skew_Carousel extends \Elementor\Widget_Base {
 			$this->add_control(
 				'skew_carousel_content',
 				[
-					'label' => esc_html__( 'Skew carousel content', ANOEL_TEXTDOM ),
+					'label' => esc_html__( 'Skew carousel content', 'anonyengine-elements' ),
 					'type' => \Elementor\Controls_Manager::REPEATER,
 					'fields' => $repeater->get_controls(),
 					'default' => [
@@ -205,7 +205,7 @@ class ANOEL_Skew_Carousel extends \Elementor\Widget_Base {
 			$this->add_control(
 				'overlay_color',
 				[
-					'label' => esc_html__( 'Overlay Color', ANOEL_TEXTDOM ),
+					'label' => esc_html__( 'Overlay Color', 'anonyengine-elements' ),
 					'type' => \Elementor\Controls_Manager::COLOR,
 					'selectors' => [
 						'{{WRAPPER}} .item-img-2:before' => 'background-color: {{VALUE}}'
