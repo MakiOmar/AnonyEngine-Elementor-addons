@@ -1,6 +1,18 @@
 <?php
+/**
+ * Elementor widgets loader
+ *
+ * PHP version 7.3 Or Later
+ *
+ * @package  Widgets
+ * @author   Makiomar <info@makior.com>
+ * @license  https://makiomar.com AnonyEngine Licence
+ * @link     https://makiomar.com
+ */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 
 /**
  * Main AnonyEngine Elements Class
@@ -48,7 +60,7 @@ final class ANOEL_Elements_Loader {
 	 *
 	 * @var ANOEL_Elements The single instance of the class.
 	 */
-	private static $_instance = null;
+	private static $instance = null;
 
 	/**
 	 * Instance
@@ -64,10 +76,10 @@ final class ANOEL_Elements_Loader {
 	 */
 	public static function instance() {
 
-		if ( is_null( self::$_instance ) ) {
-			self::$_instance = new self();
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
 		}
-		return self::$_instance;
+		return self::$instance;
 
 	}
 
@@ -80,105 +92,102 @@ final class ANOEL_Elements_Loader {
 	 */
 	public function __construct() {
 
-		add_action( 'init', [ $this, 'i18n' ] );
-		add_action( 'plugins_loaded', [ $this, 'init' ] );
-		add_action( 'elementor/editor/before_enqueue_scripts', [ $this, '_scripts' ] );
-		add_action( 'elementor/frontend/after_register_scripts', [ $this, '_scripts' ] );
-		add_action( 'elementor/editor/before_enqueue_styles', [ $this, '_styles' ] );
-		add_action( 'elementor/frontend/after_register_styles', [ $this, '_styles' ] );
+		add_action( 'init', array( $this, 'i18n' ) );
+		add_action( 'plugins_loaded', array( $this, 'init' ) );
+		add_action( 'elementor/editor/before_enqueue_scripts', array( $this, 'scripts' ) );
+		add_action( 'elementor/frontend/after_register_scripts', array( $this, 'scripts' ) );
+		add_action( 'elementor/editor/before_enqueue_styles', array( $this, 'styles' ) );
+		add_action( 'elementor/frontend/after_register_styles', array( $this, 'styles' ) );
 	}
-	
-	
+
+
 	/**
 	 * Register widgets style
 	 */
-	public function _styles(){
-			
-		$styles = array(
-			'owl-menu' => 'owl-menu',
-			'posts-grid' => 'posts-grid',
-			'slick-vtext' => 'slick-vtext-slider.min',
-			'animated-icon-list' => 'animated-icon-list',
-			'skew-carousel' => 'skew-carousel',
-		);
-			
-		$styles_libs = [
-			'circle' => 'circle',
-			'slick' => 'slick',
-			'heapshot' => 'heapshot',
-			'owl.carousel' => 'owl.carousel.min',
-			'font-awesome-5-all' => 'all',
-		];
-		
-		$styles = array_merge($styles, $styles_libs);
+	public function styles() {
 
-		foreach($styles as $style => $file_name){
-			
-			$handle = in_array($style, array_keys($styles_libs)) ? $style : 'anoel-' . $style;
-			
-			wp_register_style( 
-				$handle, 
-				ANOEL_URI . 'assets/css/'.$file_name.'.css', 
+		$styles = array(
+			'owl-menu'           => 'owl-menu',
+			'posts-grid'         => 'posts-grid',
+			'slick-vtext'        => 'slick-vtext-slider.min',
+			'animated-icon-list' => 'animated-icon-list',
+			'skew-carousel'      => 'skew-carousel',
+		);
+
+		$styles_libs = array(
+			'circle'             => 'circle',
+			'slick'              => 'slick',
+			'heapshot'           => 'heapshot',
+			'owl.carousel'       => 'owl.carousel.min',
+			'font-awesome-5-all' => 'all',
+		);
+
+		$styles = array_merge( $styles, $styles_libs );
+
+		foreach ( $styles as $style => $file_name ) {
+
+			$handle = in_array( $style, array_keys( $styles_libs ), true ) ? $style : 'anoel-' . $style;
+
+			wp_register_style(
+				$handle,
+				ANOEL_URI . 'assets/css/' . $file_name . '.css',
 				false,
 				filemtime(
-					wp_normalize_path(ANOEL_DIR . 'assets/css/'.$file_name.'.css' )
-				) 
+					wp_normalize_path( ANOEL_DIR . 'assets/css/' . $file_name . '.css' )
+				)
 			);
 		}
 
 	}
-	
+
 	/**
 	 * Register widgets scripts
 	 */
-	public function _scripts(){
-		
+	public function scripts() {
+
 		wp_enqueue_script( 'jquery' );
-		
+
 		$scripts = array(
-			'slick-vtext' => 'slick-vtext-slider.min',
-			'headpshot-init' => 'headpshot-init',
+			'slick-vtext'        => 'slick-vtext-slider.min',
+			'headpshot-init'     => 'headpshot-init',
 			'animated-icon-list' => 'animated-icon-list',
-			'skew-carousel' => 'skew-carousel',
+			'skew-carousel'      => 'skew-carousel',
 		);
-		
-		$libs_scripts = [
-			'circle' => 'circle',
-			'slick' => 'slick.min',
-			'heapshot' => 'jquery.heapshot',
+
+		$libs_scripts = array(
+			'circle'       => 'circle',
+			'slick'        => 'slick.min',
+			'heapshot'     => 'jquery.heapshot',
 			'imagesloaded' => 'jquery.imagesloaded.min',
 			'jQueryRotate' => 'jQueryRotate.min',
-			'owl.carousel' => 'owl.carousel.min'
-		];
-		
-		$scripts = array_merge($scripts, $libs_scripts);
+			'owl.carousel' => 'owl.carousel.min',
+		);
 
-		foreach($scripts as $script => $file_name){
+		$scripts = array_merge( $scripts, $libs_scripts );
 
-			
-			$handle = in_array($script, array_keys($libs_scripts) ) ? $script : 'anoel-' . $script;
-			
-			if ($script == 'slick-vtext') {
-				$deps = ['jquery', 'slick'];
-			}else{
-				$deps = ['jquery'];
+		foreach ( $scripts as $script => $file_name ) {
+
+			$handle = in_array( $script, array_keys( $libs_scripts ), true ) ? $script : 'anoel-' . $script;
+
+			if ( 'slick-vtext' === $script ) {
+				$deps = array( 'jquery', 'slick' );
+			} else {
+				$deps = array( 'jquery' );
 			}
-			$registered = wp_enqueue_script( 
-				$handle , 
-				ANOEL_URI . 'assets/js/'.$file_name.'.js' ,
+			$registered = wp_enqueue_script(
+				$handle,
+				ANOEL_URI . 'assets/js/' . $file_name . '.js',
 				$deps,
 				filemtime(
-					wp_normalize_path(ANOEL_DIR . 'assets/js/'.$file_name.'.js' )
-				), 
-				true 
+					wp_normalize_path( ANOEL_DIR . 'assets/js/' . $file_name . '.js' )
+				),
+				true
 			);
-			
-			
+
 		}
-		
-		
+
 	}
-	
+
 
 	/**
 	 * Load Textdomain
@@ -193,7 +202,7 @@ final class ANOEL_Elements_Loader {
 	 */
 	public function i18n() {
 
-		load_plugin_textdomain( ANOEL_TEXTDOM );
+		load_plugin_textdomain( 'anonyengine-elements' );
 
 	}
 
@@ -212,43 +221,43 @@ final class ANOEL_Elements_Loader {
 	 */
 	public function init() {
 
-		// Check if Elementor installed and activated
+		// Check if Elementor installed and activated.
 		if ( ! did_action( 'elementor/loaded' ) ) {
-			add_action( 'admin_notices', [ $this, 'missingMainPlugin' ] );
+			add_action( 'admin_notices', array( $this, 'missing_main_plugin' ) );
 			return;
 		}
 
-		// Check for required Elementor version
+		// Check for required Elementor version.
 		if ( ! version_compare( ELEMENTOR_VERSION, self::MINIMUM_ELEMENTOR_VERSION, '>=' ) ) {
-			add_action( 'admin_notices', [ $this, 'minimumElementorVersion' ] );
+			add_action( 'admin_notices', array( $this, 'minimumElementorVersion' ) );
 			return;
 		}
 
-		// Check for required PHP version
+		// Check for required PHP version.
 		if ( version_compare( PHP_VERSION, self::MINIMUM_PHP_VERSION, '<' ) ) {
-			add_action( 'admin_notices', [ $this, 'minimumPhpVersion' ] );
+			add_action( 'admin_notices', array( $this, 'minimumPhpVersion' ) );
 			return;
 		}
-		
 
-		// Add Plugin actions
-		add_action( 'elementor/elements/categories_registered', [ $this, 'widgetsCategories' ] );
-		add_action( 'elementor/widgets/widgets_registered', [ $this, 'init_widgets' ] );
-		add_action( 'elementor/controls/controls_registered', [ $this, 'init_controls' ] );
+		// Add Plugin actions.
+		add_action( 'elementor/elements/categories_registered', array( $this, 'widgets_categories' ) );
+		add_action( 'elementor/widgets/widgets_registered', array( $this, 'init_widgets' ) );
+		add_action( 'elementor/controls/controls_registered', array( $this, 'init_controls' ) );
 	}
-	
+
 	/**
 	 * Add custome category
-	 * @param object $elements_manager 
+	 *
+	 * @param object $elements_manager Elementor mangare object.
 	 */
-	public function widgetsCategories( $elements_manager ) {
+	public function widgets_categories( $elements_manager ) {
 
 		$elements_manager->add_category(
 			'anonyengine',
-			[
-				'title' => __( 'AnonyEngine', ANOEL_TEXTDOM ),
-				'icon' => 'fa fa-gear',
-			]
+			array(
+				'title' => __( 'AnonyEngine', 'anonyengine-elements' ),
+				'icon'  => 'fa fa-gear',
+			)
 		);
 
 	}
@@ -262,15 +271,17 @@ final class ANOEL_Elements_Loader {
 	 *
 	 * @access public
 	 */
-	public function missingMainPlugin() {
+	public function missing_main_plugin() {
 
-		if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
+		if ( isset( $_GET['activate'] ) ) {
+			unset( $_GET['activate'] );
+		}
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor */
-			esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', ANOEL_TEXTDOM ),
-			'<strong>' . esc_html__( 'AnonyEngine Elements', ANOEL_TEXTDOM ) . '</strong>',
-			'<strong>' . esc_html__( 'Elementor', ANOEL_TEXTDOM ) . '</strong>'
+			esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'anonyengine-elements' ),
+			'<strong>' . esc_html__( 'AnonyEngine Elements', 'anonyengine-elements' ) . '</strong>',
+			'<strong>' . esc_html__( 'Elementor', 'anonyengine-elements' ) . '</strong>'
 		);
 
 		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
@@ -288,14 +299,16 @@ final class ANOEL_Elements_Loader {
 	 */
 	public function minimumElementorVersion() {
 
-		if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
+		if ( isset( $_GET['activate'] ) ) {
+			unset( $_GET['activate'] );
+		}
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor 3: Required Elementor version */
-			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', ANOEL_TEXTDOM ),
-			'<strong>' . esc_html__( 'AnonyEngine Elements', ANOEL_TEXTDOM ) . '</strong>',
-			'<strong>' . esc_html__( 'Elementor', ANOEL_TEXTDOM ) . '</strong>',
-			 self::MINIMUM_ELEMENTOR_VERSION
+			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'anonyengine-elements' ),
+			'<strong>' . esc_html__( 'AnonyEngine Elements', 'anonyengine-elements' ) . '</strong>',
+			'<strong>' . esc_html__( 'Elementor', 'anonyengine-elements' ) . '</strong>',
+			self::MINIMUM_ELEMENTOR_VERSION
 		);
 
 		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
@@ -313,14 +326,16 @@ final class ANOEL_Elements_Loader {
 	 */
 	public function minimumPhpVersion() {
 
-		if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
+		if ( isset( $_GET['activate'] ) ) {
+			unset( $_GET['activate'] );
+		}
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: PHP 3: Required PHP version */
-			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', ANOEL_TEXTDOM ),
-			'<strong>' . esc_html__( 'AnonyEngine Elements', ANOEL_TEXTDOM ) . '</strong>',
-			'<strong>' . esc_html__( 'PHP', ANOEL_TEXTDOM ) . '</strong>',
-			 self::MINIMUM_PHP_VERSION
+			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'anonyengine-elements' ),
+			'<strong>' . esc_html__( 'AnonyEngine Elements', 'anonyengine-elements' ) . '</strong>',
+			'<strong>' . esc_html__( 'PHP', 'anonyengine-elements' ) . '</strong>',
+			self::MINIMUM_PHP_VERSION
 		);
 
 		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
@@ -337,27 +352,24 @@ final class ANOEL_Elements_Loader {
 	 * @access public
 	 */
 	public function init_widgets() {
-		
 
-		$widgets = [
-		
-		//'ANOEL_Oembed',
-		'ANOEL_Terms_Dropdown',
-		'ANOEL_Animated_Icon_List',
-		'ANOEL_Vertical_Text_Slider',
-		'ANOEL_Skew_Carousel'
-			
-		
-		];
-		
-		foreach ($widgets as $widget) {
-			if (class_exists($widget)) {
-				
+		$widgets = array(
+
+			// 'ANOEL_Oembed',
+			'ANOEL_Terms_Dropdown',
+			'ANOEL_Animated_Icon_List',
+			'ANOEL_Vertical_Text_Slider',
+			'ANOEL_Skew_Carousel',
+
+		);
+
+		foreach ( $widgets as $widget ) {
+			if ( class_exists( $widget ) ) {
+
 				// Register widget
 				\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new $widget() );
 			}
 		}
-		
 
 	}
 
@@ -372,7 +384,8 @@ final class ANOEL_Elements_Loader {
 	 */
 	public function init_controls() {
 
-		/*// Include Control files
+		/*
+		// Include Control files
 		require_once( ANOEL_CONTROLS_CLASSES . '/test.php' );
 
 		// Register control
