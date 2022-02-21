@@ -97,7 +97,7 @@ final class ANOEL_Elements_Loader {
 		$styles = array(
 			'owl-menu' => 'owl-menu',
 			'posts-grid' => 'posts-grid',
-			'slick-vtext' => 'slick-vtext-slider',
+			'slick-vtext' => 'slick-vtext-slider.min',
 			'animated-icon-list' => 'animated-icon-list',
 			'skew-carousel' => 'skew-carousel',
 		);
