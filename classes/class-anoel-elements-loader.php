@@ -273,9 +273,7 @@ final class ANOEL_Elements_Loader {
 	 */
 	public function missing_main_plugin() {
 
-		if ( isset( $_GET['activate'] ) ) {
-			unset( $_GET['activate'] );
-		}
+		deactivate_plugins( plugin_basename( ANONYENGINE_ELEMENTS ) );
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor */
@@ -299,9 +297,7 @@ final class ANOEL_Elements_Loader {
 	 */
 	public function minimum_elementor_version() {
 
-		if ( isset( $_GET['activate'] ) ) {
-			unset( $_GET['activate'] );
-		}
+		deactivate_plugins( plugin_basename( ANONYENGINE_ELEMENTS ) );
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor 3: Required Elementor version */
@@ -326,9 +322,7 @@ final class ANOEL_Elements_Loader {
 	 */
 	public function minimum_php_version() {
 
-		if ( isset( $_GET['activate'] ) ) {
-			unset( $_GET['activate'] );
-		}
+		deactivate_plugins( plugin_basename( ANONYENGINE_ELEMENTS ) );
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: PHP 3: Required PHP version */
