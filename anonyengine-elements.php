@@ -12,9 +12,16 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly.
 
+/**
+ * Holds plugin's base
+ * 
+ * @const
+ */ 
+define( 'ANONYENGINE_ELEMENTS', __FILE__ );
 
 /**
- * Holds plugin's PATH
+ * Holds plugin's PATH.
+ * 
  * @const
  */ 
 define('ANOEL_DIR', wp_normalize_path(plugin_dir_path( __FILE__ )));
