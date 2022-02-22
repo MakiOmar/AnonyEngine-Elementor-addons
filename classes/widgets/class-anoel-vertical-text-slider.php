@@ -249,7 +249,13 @@ class ANOEL_Vertical_Text_Slider extends \Elementor\Widget_Base {
 
 	}
 
-
+	/**
+	 * Widget styles.
+	 *
+	 * @access private
+	 *
+	 * @return void
+	 */
 	private function style_tab() {
 
 		$this->start_controls_section(
@@ -323,7 +329,7 @@ class ANOEL_Vertical_Text_Slider extends \Elementor\Widget_Base {
 					),
 					'selectors' => array(
 						'{{WRAPPER}} span.slick-slide i' => 'font-size: {{SIZE}}{{UNIT}};',
-					)
+					),
 				)
 			);
 
@@ -353,7 +359,6 @@ class ANOEL_Vertical_Text_Slider extends \Elementor\Widget_Base {
 	 *
 	 * Written in PHP and used to generate the final HTML.
 	 *
-	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function render() {
@@ -386,19 +391,13 @@ class ANOEL_Vertical_Text_Slider extends \Elementor\Widget_Base {
 			}
 
 			if ( empty( $data ) ) {
-				esc_html_e( 'Please add some items' );
+				esc_html_e( 'Please add some items', 'anonyengine-elements' );
 
 				return;
 			}
 
 			include wp_normalize_path( ANOEL_DIR . 'templates/vertical-text-slider.php' );
 		}
-
-		?>
-	
-	
-
-		<?php
 	}
 
 
@@ -410,39 +409,32 @@ class ANOEL_Vertical_Text_Slider extends \Elementor\Widget_Base {
 	 * @since 1.0.0
 	 * @access protected
 	 */
-	protected function content_template() {
+	protected function content_template() { ?>
 
-		?>
-		
-		
 		<# 
-		
 			view.addRenderAttribute( 'vertical_slider_list', 'class', 'anoshc-slick-vtext' );
-		
+
 			if ( 'row-reverse' == settings.icon_position ) {
 				view.addRenderAttribute( 'vertical_slider_list_item', 'class', 'row-reverse' );
 			}
-		
+
 			var iconsHTML = {},
 				migrated = {};
-		
 		#>
-		
-		<div {{{ view.getRenderAttributeString( 'vertical_slider_list' ) }}}>
-			
-			<# _.each( settings.vertical_slider_list, function( item, index ) {
-				
-				iconsHTML[ index ] = elementor.helpers.renderIcon( view, item.content_icon, { 'aria-hidden': true }, 'i', 'object' );
-			
-			 #>
-			
-				<span {{{ view.getRenderAttributeString( 'vertical_slider_list_item' ) }}}>{{{ iconsHTML[ index ].value }}}{{{ item.item_content }}}</span>
-			
-			<# } ); #>
-			
-		</div>
-		
 
+		<div {{{ view.getRenderAttributeString( 'vertical_slider_list' ) }}}>
+
+			<# _.each( settings.vertical_slider_list, function( item, index ) {
+
+				iconsHTML[ index ] = elementor.helpers.renderIcon( view, item.content_icon, { 'aria-hidden': true }, 'i', 'object' );
+
+			#>
+
+				<span {{{ view.getRenderAttributeString( 'vertical_slider_list_item' ) }}}>{{{ iconsHTML[ index ].value }}}{{{ item.item_content }}}</span>
+
+			<# } ); #>
+
+		</div>
 		<?php
 	}
 }
