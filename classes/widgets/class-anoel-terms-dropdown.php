@@ -1,19 +1,36 @@
 <?php
+/**
+ * Elementor terms dropdown widget
+ *
+ * PHP version 7.3 Or Later
+ *
+ * @package  AnonyEngine elements
+ * @author   Makiomar <info@makior.com>
+ * @license  https://makiomar.com AnonyEngine Licence
+ * @link     https://makiomar.com/anonyengine_elements
+ */
+
 use Elementor\Utils;
 use Elementor\Group_Control_Css_Filter;
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 
 /**
- * Elementor terms dropdown Widget.
- *
- * Elementor widget that inserts simple content into the page.
+ * Elementor terms dropdown widget class.
  *
  * @since 1.0.0
+ *
+ * @package    Elementor Widgets
+ * @author     Makiomar <info@makior.com>
+ * @license    https://makiomar.com AnonyEngine Licence
+ * @link       https://makiomar.com
  */
 class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
-	
-	
+
+
 	/**
 	 * Get widget name.
 	 *
@@ -27,7 +44,7 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 	public function get_name() {
 		return 'terms-dropdown';
 	}
-	
+
 	/**
 	 * Get widget title.
 	 *
@@ -41,7 +58,7 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 	public function get_title() {
 		return __( 'Terms dropdown', 'anonyengine-elements' );
 	}
-	
+
 	/**
 	 * Get widget keywords.
 	 *
@@ -53,9 +70,9 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 	 * @return array Widget keywords.
 	 */
 	public function get_keywords() {
-		return [ 'dropdown', 'menu', 'categories' ];
+		return array( 'dropdown', 'menu', 'categories' );
 	}
-	
+
 	/**
 	 * Get widget icon.
 	 *
@@ -69,26 +86,28 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 	public function get_icon() {
 		return 'fa-folder';
 	}
-	
-	
+
+
 	/**
-	 * Get scripts dependancies
-	 * @return type
+	 * Get scripts dependancies.
+	 *
+	 * @return array Array of script dependancies.
 	 */
-	public function get_script_depends(){
-		
-		return [];
+	public function get_script_depends() {
+
+		return array();
 	}
-	
+
 	/**
-	 * Get style dependancies
-	 * @return type
+	 * Get style dependancies.
+	 *
+	 * @return array Array of style dependancies.
 	 */
-	public function get_style_depends(){
-		
-		return [];
+	public function get_style_depends() {
+
+		return array();
 	}
-	
+
 	/**
 	 * Get widget categories.
 	 *
@@ -100,9 +119,9 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 	 * @return array Widget categories.
 	 */
 	public function get_categories() {
-		return [ 'anonyengine' ];
+		return array( 'anonyengine' );
 	}
-	
+
 	/**
 	 * Register terms dropdown widget controls.
 	 *
@@ -112,67 +131,69 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 	 * @access protected
 	 */
 	protected function _register_controls() {
-		
+
 		$this->start_controls_section(
 			'content_section',
-			[
+			array(
 				'label' => esc_html__( 'Settings', 'anonyengine-elements' ),
-				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
-			]
+				'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
+			)
 		);
-		
-			
+
 			$this->add_control(
 				'post_type',
-				[
-					'label' => esc_html__( 'Post type', 'anonyengine-elements' ),
-					'type' => \Elementor\Controls_Manager::SELECT,
-					'options' => get_post_types(['public' => true]),
+				array(
+					'label'   => esc_html__( 'Post type', 'anonyengine-elements' ),
+					'type'    => \Elementor\Controls_Manager::SELECT,
+					'options' => get_post_types( array( 'public' => true ) ),
 					'default' => 'post',
-					
-				]
+
+				)
 			);
-			
+
 			$this->add_control(
 				'taxonomy',
-				[
-					'label' => esc_html__( 'Taxonomy', 'anonyengine-elements' ),
-					'type' => \Elementor\Controls_Manager::SELECT,
-					'options' => get_taxonomies(['public' => true]),
+				array(
+					'label'   => esc_html__( 'Taxonomy', 'anonyengine-elements' ),
+					'type'    => \Elementor\Controls_Manager::SELECT,
+					'options' => get_taxonomies( array( 'public' => true ) ),
 					'default' => 'category',
-					
-				]
+
+				)
 			);
-			
+
 			$this->add_control(
 				'terms',
-				[
-					'label' => esc_html__( 'Terms', 'anonyengine-elements' ),
+				array(
+					'label'       => esc_html__( 'Terms', 'anonyengine-elements' ),
 					'label_block' => true,
-					'type' => \Elementor\Controls_Manager::SELECT2,
-					'multiple' => true,
-					'options' => [
-						'title'  => __( 'Title', 'plugin-domain' ),
+					'type'        => \Elementor\Controls_Manager::SELECT2,
+					'multiple'    => true,
+					'options'     => array(
+						'title'       => __( 'Title', 'plugin-domain' ),
 						'description' => __( 'Description', 'plugin-domain' ),
-						'button' => __( 'Button', 'plugin-domain' ),
-					],
-				'default' => [ 'title', 'description' ],
-					
-				]
-			);
-			
-			
+						'button'      => __( 'Button', 'plugin-domain' ),
+					),
+					'default'     => array( 'title', 'description' ),
 
-		
+				)
+			);
+
 		$this->end_controls_section();
-		
+
 		$this->style_tab();
 
 	}
-	
-	
-	private function style_tab(){
-		
+
+	/**
+	 * Widget styles.
+	 *
+	 * @access private
+	 *
+	 * @return void
+	 */
+	private function style_tab() {
+
 	}
 
 	/**
@@ -184,18 +205,17 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 	 * @access protected
 	 */
 	protected function render() {
-		
-		$settings = $this->get_settings_for_display();
-				
-		
-		
-	?>
-	
-	
 
-	<?php }
-	
-	
+		$settings = $this->get_settings_for_display();
+
+		?>
+
+
+
+		<?php
+	}
+
+
 	/**
 	 * Render terms dropdown widget output on the backend editor.
 	 *
@@ -207,8 +227,8 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 	protected function content_template() {
 
 		?>
-		
-		
 
-	<?php }
+
+		<?php
+	}
 }
