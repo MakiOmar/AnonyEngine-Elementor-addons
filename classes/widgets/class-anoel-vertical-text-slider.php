@@ -17,7 +17,7 @@ defined( 'ABSPATH' ) || die(); // Exit if accessed direct.
  *
  * @package    Elementor Widgets
  * @author     Makiomar <info@makior.com>
- * @license    https://makiomar.com SmartPage Licence
+ * @license    https://makiomar.com AnonyEngine Licence
  * @link       https://makiomar.com
  */
 class ANOEL_Vertical_Text_Slider extends \Elementor\Widget_Base {
