@@ -242,7 +242,6 @@ final class ANOEL_Elements_Loader {
 		// Add Plugin actions.
 		add_action( 'elementor/elements/categories_registered', array( $this, 'widgets_categories' ) );
 		add_action( 'elementor/widgets/widgets_registered', array( $this, 'init_widgets' ) );
-		add_action( 'elementor/controls/controls_registered', array( $this, 'init_controls' ) );
 	}
 
 	/**
@@ -365,24 +364,6 @@ final class ANOEL_Elements_Loader {
 			}
 		}
 
-	}
-
-	/**
-	 * Init Controls
-	 *
-	 * Include controls files and register them
-	 *
-	 * @since 1.0.0
-	 *
-	 * @access public
-	 */
-	public function init_controls() {
-
-		// Include Control files.
-		// require_once( ANOEL_CONTROLS_CLASSES . '/test.php' );.
-
-		// Register control.
-		// \Elementor\Plugin::$instance->controls_manager->register_control( 'control-type-', new \ANOEL_Elements_Control() );.
 	}
 
 }
