@@ -112,6 +112,7 @@ final class ANOEL_Elements_Loader {
 			'slick-vtext'        => 'slick-vtext-slider.min',
 			'animated-icon-list' => 'animated-icon-list',
 			'skew-carousel'      => 'skew-carousel',
+			'terms-dropdown'      => 'terms-dropdown.min',
 		);
 
 		$styles_libs = array(
@@ -152,6 +153,7 @@ final class ANOEL_Elements_Loader {
 			'headpshot-init'     => 'headpshot-init',
 			'animated-icon-list' => 'animated-icon-list',
 			'skew-carousel'      => 'skew-carousel',
+			'terms-dropdown'      => 'terms-dropdown.min',
 		);
 
 		$libs_scripts = array(
