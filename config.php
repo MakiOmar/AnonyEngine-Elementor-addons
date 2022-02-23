@@ -35,12 +35,6 @@ if ( ! function_exists( 'nvd' ) ) {
  */
 define( 'ANOEL_URI', plugin_dir_url( __FILE__ ) );
 
-/**
- * Holds plugin's text domain
- *
- * @const
- */
-define( ''anonyengine-elements'', 'anonyengine-elements' );
 
 /**
  * Holds plugin's classes
