@@ -3,12 +3,15 @@
 	
 	li, li ul li {
 		position: relative;
-		background-color: #444444;
+		background: none;
+		background-color:transparent;
+		padding: 0;
 	}
 	
 	li a{
 		display: inline-block!important;
 		vertical-align: middle;
+		color: #444444;
 		font-size: 14px;
 		padding: 10px;
 	}
@@ -18,15 +21,27 @@
 	.has-children ul{
 		background-color: #fff!important;
 	}
+
+	.toggle-category {
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		padding: 10px;
+		position: absolute;
+		top: 0;
+		right: 0;
+		justify-content: center;
+	}
 }
 
-	#anony-cat-list {
-		position: relative;
-		width: 100%;
-		border-radius: 5px;
-		padding: 0 8px;
-		overflow: hidden;
-	}
+#anony-cat-list {
+	position: relative;
+	width: 100%;
+	border-radius: 5px;
+	padding: 0 8px;
+	overflow: hidden;
+}
+
 
 
 /* End categories dropdown widget */
