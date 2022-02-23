@@ -95,7 +95,7 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 	 */
 	public function get_script_depends() {
 
-		return array();
+		return array('anoel-terms-dropdown');
 	}
 
 	/**
@@ -105,7 +105,7 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 	 */
 	public function get_style_depends() {
 
-		return array();
+		return array('anoel-terms-dropdown');
 	}
 
 	/**
@@ -208,11 +208,19 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 
 		$settings = $this->get_settings_for_display();
 
-		?>
+			echo '<ul id="anony-cat-list">';
 
+			wp_list_categories(
+				array(
+					'hide_empty' => 0,
+					'title_li'   => '',
+					'order'      => 'DESC',
+					'walker'     => new ANONY_Cats_Walk(),
+				)
+			);
 
+			echo '</ul>';
 
-		<?php
 	}
 
 
@@ -226,9 +234,17 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 	 */
 	protected function content_template() {
 
-		?>
+		echo '<ul id="anony-cat-list">';
 
+		wp_list_categories(
+			array(
+				'hide_empty' => 0,
+				'title_li'   => '',
+				'order'      => 'DESC',
+				'walker'     => new ANONY_Cats_Walk(),
+			)
+		);
 
-		<?php
+		echo '</ul>';
 	}
 }
