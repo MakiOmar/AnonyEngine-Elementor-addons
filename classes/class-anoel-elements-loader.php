@@ -243,7 +243,7 @@ final class ANOEL_Elements_Loader {
 
 		// Add Plugin actions.
 		add_action( 'elementor/elements/categories_registered', array( $this, 'widgets_categories' ) );
-		add_action( 'elementor/widgets/widgets_registered', array( $this, 'init_widgets' ) );
+		add_action( 'elementor/widgets/register', array( $this, 'init_widgets' ) );
 	}
 
 	/**
@@ -362,7 +362,7 @@ final class ANOEL_Elements_Loader {
 			if ( class_exists( $widget ) ) {
 
 				// Register widget.
-				\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new $widget() );
+				\Elementor\Plugin::instance()->widgets_manager->register( new $widget() );
 			}
 		}
 
