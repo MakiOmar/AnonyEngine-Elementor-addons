@@ -7,7 +7,9 @@
   var termsDropdown = function termsDropdown($scop, $) {
     $('.toggle-category').each(function () {
       $(this).next('.anony-dropdown').attr('id', $(this).attr('rel-id'));
+      $(this).css( 'height', $(this).prev( 'a' ).outerHeight() );
     });
+
     $(document).on('click', '.toggle-category', function () {
       var clicked = $(this);
       var targetID = clicked.attr('rel-id');
