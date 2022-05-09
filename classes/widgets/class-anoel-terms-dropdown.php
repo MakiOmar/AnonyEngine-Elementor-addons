@@ -130,7 +130,7 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 	 * @since 1.0.0
 	 * @access protected
 	 */
-	protected function _register_controls() {
+	protected function register_controls() {
 
 		$this->start_controls_section(
 			'content_section',
@@ -170,9 +170,9 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 					'type'        => \Elementor\Controls_Manager::SELECT2,
 					'multiple'    => true,
 					'options'     => array(
-						'title'       => __( 'Title', 'plugin-domain' ),
-						'description' => __( 'Description', 'plugin-domain' ),
-						'button'      => __( 'Button', 'plugin-domain' ),
+						'title'       => __( 'Title', 'anonyengine-elements' ),
+						'description' => __( 'Description', 'anonyengine-elements' ),
+						'button'      => __( 'Button', 'anonyengine-elements' ),
 					),
 					'default'     => array( 'title', 'description' ),
 
@@ -193,6 +193,226 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 	 * @return void
 	 */
 	private function style_tab() {
+
+		$this->container_styles();
+		$this->icon_styles();
+		$this->list_styles();
+	}
+
+	/**
+	 * Container's styles.
+	 *
+	 * @access private
+	 *
+	 * @return void
+	 */
+	private function container_styles() {
+		$this->start_controls_section(
+			'anonytd_section_container_style',
+			array(
+				'label' => esc_html__( 'Container', 'anonyengine-elements' ),
+				'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+			)
+		);
+
+			$this->add_group_control(
+				\Elementor\Group_Control_Background::get_type(),
+				[
+					'name' => 'anonytd_container_background',
+					'label' => esc_html__( 'Background', 'anonyengine-elements' ),
+					'types' => [ 'classic', 'gradient', 'video' ],
+					'selector' => '{{WRAPPER}} #anony-cat-list',
+				]
+			);
+
+			$this->add_group_control(
+				\Elementor\Group_Control_Border::get_type(),
+				[
+					'name' => 'anonytd_container_border',
+					'label' => esc_html__( 'Border', 'anonyengine-elements' ),
+					'selector' => '{{WRAPPER}} #anony-cat-list li',
+				]
+			);
+
+			$this->add_control(
+				'anonytd_container_border_radius',
+				[
+					'type' => \Elementor\Controls_Manager::DIMENSIONS,
+					'label' => esc_html__( 'Border radius', 'elementor' ),
+					'size_units' => [ 'px', 'em', '%' ],
+					'selectors' => [
+						'{{WRAPPER}} #anony-cat-list' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					],
+				]
+			);
+
+			$this->add_responsive_control(
+				'anonytd_container_padding',
+				[
+					'type' => \Elementor\Controls_Manager::DIMENSIONS,
+					'label' => esc_html__( 'Padding', 'elementor' ),
+					'size_units' => [ 'px', 'em', '%' ],
+					'selectors' => [
+						'{{WRAPPER}} #anony-cat-list' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					],
+				]
+			);
+
+			$this->add_responsive_control(
+				'anonytd_container_margin',
+				[
+					'type' => \Elementor\Controls_Manager::DIMENSIONS,
+					'label' => esc_html__( 'Margin', 'elementor' ),
+					'size_units' => [ 'px', 'em', '%' ],
+					'selectors' => [
+						'{{WRAPPER}} #anony-cat-list' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					],
+				]
+			);
+
+			$this->add_group_control(
+				\Elementor\Group_Control_Box_Shadow::get_type(),
+				[
+					'name' => 'anonytd_container_box_shadow',
+					'label' => esc_html__( 'Box Shadow', 'elementor' ),
+					'selector' => '{{WRAPPER}} #anony-cat-list',
+				]
+			);
+
+		$this->end_controls_section();
+	}
+
+	/**
+	 * Icon's styles.
+	 *
+	 * @access private
+	 *
+	 * @return void
+	 */
+	private function icon_styles() {
+		$this->start_controls_section(
+			'section_content_style',
+			array(
+				'label' => esc_html__( 'Icon', 'elementor' ),
+				'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+			)
+		);
+
+			$this->add_control(
+				'icon_color',
+				array(
+					'label'     => esc_html__( 'Color', 'anonyengine-elements' ),
+					'type'      => \Elementor\Controls_Manager::COLOR,
+					'selectors' => array(
+						'{{WRAPPER}} #anony-cat-list .toggle-category .fa' => 'color: {{VALUE}}',
+					),
+				)
+			);
+
+
+			$this->add_responsive_control(
+				'icon_size',
+				array(
+					'label'     => esc_html__( 'Size', 'elementor' ),
+					'type'      => \Elementor\Controls_Manager::SLIDER,
+					'range'     => array(
+						'px' => array(
+							'min' => 6,
+							'max' => 300,
+						),
+					),
+					'selectors' => array(
+						'{{WRAPPER}} #anony-cat-list .toggle-category .fa' => 'font-size: {{SIZE}}{{UNIT}};',
+					),
+				)
+			);
+
+		$this->end_controls_section();
+	}
+
+	/**
+	 * List's styles.
+	 *
+	 * @access private
+	 *
+	 * @return void
+	 */
+	private function list_styles() {
+
+		$this->start_controls_section(
+			'section_list_style',
+			array(
+				'label' => esc_html__( 'List', 'anonyengine-elements' ),
+				'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+			)
+		);
+			$this->add_group_control(
+				\Elementor\Group_Control_Typography::get_type(),
+				array(
+					'name'     => 'anonytd_list_typography',
+					'label'    => esc_html__( 'Typography', 'elementor' ),
+					'scheme'   => Elementor\Core\Schemes\Typography::TYPOGRAPHY_1,
+					'selector' => '{{WRAPPER}} #anony-cat-list li a',
+				)
+			);
+
+			$this->add_control(
+				'anonytd_text_color',
+				array(
+					'label'     => esc_html__( 'Color', 'anonyengine-elements' ),
+					'type'      => \Elementor\Controls_Manager::COLOR,
+					'selectors' => array(
+						'{{WRAPPER}} #anony-cat-list li a' => 'color: {{VALUE}}',
+					),
+				)
+			);
+
+			$this->add_group_control(
+				\Elementor\Group_Control_Border::get_type(),
+				[
+					'name' => 'anonytd_list_border',
+					'label' => esc_html__( 'Border', 'anonyengine-elements' ),
+					'selector' => '{{WRAPPER}} #anony-cat-list li',
+				]
+			);
+
+			$this->add_control(
+				'anonytd_list_border_radius',
+				[
+					'type' => \Elementor\Controls_Manager::DIMENSIONS,
+					'label' => esc_html__( 'Border radius', 'elementor' ),
+					'size_units' => [ 'px', 'em', '%' ],
+					'selectors' => [
+						'{{WRAPPER}} #anony-cat-list li' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					],
+				]
+			);
+
+			$this->add_responsive_control(
+				'anonytd_list_padding',
+				[
+					'type' => \Elementor\Controls_Manager::DIMENSIONS,
+					'label' => esc_html__( 'Padding', 'elementor' ),
+					'size_units' => [ 'px', 'em', '%' ],
+					'selectors' => [
+						'{{WRAPPER}} #anony-cat-list li a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					],
+				]
+			);
+
+			$this->add_responsive_control(
+				'anonytd_list_margin',
+				[
+					'type' => \Elementor\Controls_Manager::DIMENSIONS,
+					'label' => esc_html__( 'Margin', 'elementor' ),
+					'size_units' => [ 'px', 'em', '%' ],
+					'selectors' => [
+						'{{WRAPPER}} #anony-cat-list li' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					],
+				]
+			);
+
+		$this->end_controls_section();
 
 	}
 
