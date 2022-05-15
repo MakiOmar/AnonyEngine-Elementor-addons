@@ -141,18 +141,7 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 		);
 
 			$this->add_control(
-				'post_type',
-				array(
-					'label'   => esc_html__( 'Post type', 'anonyengine-elements' ),
-					'type'    => \Elementor\Controls_Manager::SELECT,
-					'options' => get_post_types( array( 'public' => true ) ),
-					'default' => 'post',
-
-				)
-			);
-
-			$this->add_control(
-				'taxonomy',
+				'anoeltd_taxonomy',
 				array(
 					'label'   => esc_html__( 'Taxonomy', 'anonyengine-elements' ),
 					'type'    => \Elementor\Controls_Manager::SELECT,
@@ -163,20 +152,27 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 			);
 
 			$this->add_control(
-				'terms',
-				array(
-					'label'       => esc_html__( 'Terms', 'anonyengine-elements' ),
-					'label_block' => true,
-					'type'        => \Elementor\Controls_Manager::SELECT2,
-					'multiple'    => true,
-					'options'     => array(
-						'title'       => __( 'Title', 'anonyengine-elements' ),
-						'description' => __( 'Description', 'anonyengine-elements' ),
-						'button'      => __( 'Button', 'anonyengine-elements' ),
-					),
-					'default'     => array( 'title', 'description' ),
+				'anoeltd_closed_icon',
+				[
+					'label' => esc_html__( 'Closed icon', 'anonyengine-elements' ),
+					'type' => \Elementor\Controls_Manager::ICONS,
+					'default' => [
+						'value' => 'fas fa-plus',
+						'library' => 'solid',
+					],
+				]
+			);
 
-				)
+			$this->add_control(
+				'anoeltd_opened_icon',
+				[
+					'label' => esc_html__( 'Opened icon', 'anonyengine-elements' ),
+					'type' => \Elementor\Controls_Manager::ICONS,
+					'default' => [
+						'value' => 'fas fa-minus',
+						'library' => 'solid',
+					],
+				]
 			);
 
 		$this->end_controls_section();
@@ -208,7 +204,7 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 	 */
 	private function container_styles() {
 		$this->start_controls_section(
-			'anonytd_section_container_style',
+			'anoeltd_section_container_style',
 			array(
 				'label' => esc_html__( 'Container', 'anonyengine-elements' ),
 				'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
@@ -218,7 +214,7 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 			$this->add_group_control(
 				\Elementor\Group_Control_Background::get_type(),
 				[
-					'name' => 'anonytd_container_background',
+					'name' => 'anoeltd_container_background',
 					'label' => esc_html__( 'Background', 'anonyengine-elements' ),
 					'types' => [ 'classic', 'gradient', 'video' ],
 					'selector' => '{{WRAPPER}} #anony-cat-list',
@@ -228,14 +224,14 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 			$this->add_group_control(
 				\Elementor\Group_Control_Border::get_type(),
 				[
-					'name' => 'anonytd_container_border',
+					'name' => 'anoeltd_container_border',
 					'label' => esc_html__( 'Border', 'anonyengine-elements' ),
 					'selector' => '{{WRAPPER}} #anony-cat-list li',
 				]
 			);
 
 			$this->add_control(
-				'anonytd_container_border_radius',
+				'anoeltd_container_border_radius',
 				[
 					'type' => \Elementor\Controls_Manager::DIMENSIONS,
 					'label' => esc_html__( 'Border radius', 'elementor' ),
@@ -247,7 +243,7 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 			);
 
 			$this->add_responsive_control(
-				'anonytd_container_padding',
+				'anoeltd_container_padding',
 				[
 					'type' => \Elementor\Controls_Manager::DIMENSIONS,
 					'label' => esc_html__( 'Padding', 'elementor' ),
@@ -259,7 +255,7 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 			);
 
 			$this->add_responsive_control(
-				'anonytd_container_margin',
+				'anoeltd_container_margin',
 				[
 					'type' => \Elementor\Controls_Manager::DIMENSIONS,
 					'label' => esc_html__( 'Margin', 'elementor' ),
@@ -273,7 +269,7 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 			$this->add_group_control(
 				\Elementor\Group_Control_Box_Shadow::get_type(),
 				[
-					'name' => 'anonytd_container_box_shadow',
+					'name' => 'anoeltd_container_box_shadow',
 					'label' => esc_html__( 'Box Shadow', 'elementor' ),
 					'selector' => '{{WRAPPER}} #anony-cat-list',
 				]
@@ -304,7 +300,7 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 					'label'     => esc_html__( 'Color', 'anonyengine-elements' ),
 					'type'      => \Elementor\Controls_Manager::COLOR,
 					'selectors' => array(
-						'{{WRAPPER}} #anony-cat-list .toggle-category .fa' => 'color: {{VALUE}}',
+						'{{WRAPPER}} #anony-cat-list .toggle-category i' => 'color: {{VALUE}}',
 					),
 				)
 			);
@@ -322,7 +318,7 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 						),
 					),
 					'selectors' => array(
-						'{{WRAPPER}} #anony-cat-list .toggle-category .fa' => 'font-size: {{SIZE}}{{UNIT}};',
+						'{{WRAPPER}} #anony-cat-list .toggle-category i' => 'font-size: {{SIZE}}{{UNIT}};',
 					),
 				)
 			);
@@ -349,7 +345,7 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 			$this->add_group_control(
 				\Elementor\Group_Control_Typography::get_type(),
 				array(
-					'name'     => 'anonytd_list_typography',
+					'name'     => 'anoeltd_list_typography',
 					'label'    => esc_html__( 'Typography', 'elementor' ),
 					'scheme'   => Elementor\Core\Schemes\Typography::TYPOGRAPHY_1,
 					'selector' => '{{WRAPPER}} #anony-cat-list li a',
@@ -357,7 +353,7 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 			);
 
 			$this->add_control(
-				'anonytd_text_color',
+				'anoeltd_text_color',
 				array(
 					'label'     => esc_html__( 'Color', 'anonyengine-elements' ),
 					'type'      => \Elementor\Controls_Manager::COLOR,
@@ -370,14 +366,14 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 			$this->add_group_control(
 				\Elementor\Group_Control_Border::get_type(),
 				[
-					'name' => 'anonytd_list_border',
+					'name' => 'anoeltd_list_border',
 					'label' => esc_html__( 'Border', 'anonyengine-elements' ),
 					'selector' => '{{WRAPPER}} #anony-cat-list li',
 				]
 			);
 
 			$this->add_control(
-				'anonytd_list_border_radius',
+				'anoeltd_list_border_radius',
 				[
 					'type' => \Elementor\Controls_Manager::DIMENSIONS,
 					'label' => esc_html__( 'Border radius', 'elementor' ),
@@ -389,7 +385,7 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 			);
 
 			$this->add_responsive_control(
-				'anonytd_list_padding',
+				'anoeltd_list_padding',
 				[
 					'type' => \Elementor\Controls_Manager::DIMENSIONS,
 					'label' => esc_html__( 'Padding', 'elementor' ),
@@ -401,7 +397,7 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 			);
 
 			$this->add_responsive_control(
-				'anonytd_list_margin',
+				'anoeltd_list_margin',
 				[
 					'type' => \Elementor\Controls_Manager::DIMENSIONS,
 					'label' => esc_html__( 'Margin', 'elementor' ),
@@ -428,32 +424,6 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 
 		$settings = $this->get_settings_for_display();
 
-			echo '<ul id="anony-cat-list">';
-
-			wp_list_categories(
-				array(
-					'hide_empty' => 0,
-					'title_li'   => '',
-					'order'      => 'DESC',
-					'walker'     => new ANONY_Cats_Walk(),
-				)
-			);
-
-			echo '</ul>';
-
-	}
-
-
-	/**
-	 * Render terms dropdown widget output on the backend editor.
-	 *
-	 * Written in js and used to generate the final HTML.
-	 *
-	 * @since 1.0.0
-	 * @access protected
-	 */
-	protected function content_template() {
-
 		echo '<ul id="anony-cat-list">';
 
 		wp_list_categories(
@@ -461,10 +431,12 @@ class ANOEL_Terms_Dropdown extends \Elementor\Widget_Base {
 				'hide_empty' => 0,
 				'title_li'   => '',
 				'order'      => 'DESC',
-				'walker'     => new ANONY_Cats_Walk(),
+				'taxonomy'   => $settings[ 'anoeltd_taxonomy' ],
+				'walker'     => new ANOEL_Cats_Walk( $settings ),
 			)
 		);
 
 		echo '</ul>';
+
 	}
 }
