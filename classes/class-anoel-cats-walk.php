@@ -40,7 +40,7 @@ if ( ! class_exists( 'ANOEL_Cats_Walk' ) ) {
 		 */
 		public $tree_type = 'category';
 
-		public function __construct( $settings ) {
+		public function __construct( $settings = array() ) {
 
 			$this->dropdown_settings = $settings;
 		}
