@@ -1,0 +1,83 @@
+.anoel-section-heading{
+	border-top: 5px solid #000;
+	margin: auto;
+}
+
+.anoel-skew-bg {
+	position: absolute;
+	z-index: 100;
+	top: 0;
+	width: 150px;
+	height: 40px;
+}
+
+.anoel-skew-bg::before, .anoel-skew-bg::after{
+	content: " ";
+	position: absolute;
+	display: block;
+	left: 0;
+	z-index: -1;
+	transform-origin: bottom left;
+}
+.anoel-skew-bg::before {
+	width: 95%;
+	height: 75%;
+	bottom: 0;
+	transform: skew(-20deg, 0deg);
+	box-shadow: 1px 1px 10px #444;
+}
+
+.anoel-skew-bg::after {
+	width: 100%;
+	height: 100%;
+	top: 0;
+}
+
+h4.anoel-heading-text {
+	background-color: #000;
+	display: inline-block;
+	padding: 5px;
+	color: #ffffff;
+	min-width: 150px;
+	text-align: center;
+	height: 100%;
+}
+h4.anoel-heading-text a{
+	color: #ffffff;
+}
+
+
+.anoel-section-heading-center .anoel-skew-bg{
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+.anoel-section-heading-center .anoel-skew-bg::after{
+	transform-origin: bottom left;
+	transform: skew(-30deg, 0deg);
+}
+
+.anoel-section-heading-center .anoel-skew-bg::before{
+	transform-origin: bottom left;
+	transform: skew(30deg, 0deg);
+	height: 100%;
+}
+
+.anoel-section-heading-left .anoel-skew-bg{
+	left: 0;
+}
+.anoel-section-heading-right .anoel-skew-bg{
+	left: auto;
+	right: 0;
+}
+
+.anoel-section-heading-left .anoel-skew-bg::after, .anoel-section-heading-left .anoel-skew-bg::before {
+	transform-origin: bottom left;
+	transform: skew(-30deg, 0deg);
+}
+
+.anoel-section-heading-right .anoel-skew-bg::after, .anoel-section-heading-right .anoel-skew-bg::before {
+	transform-origin: bottom left;
+	transform: skew(30deg, 0deg);
+}

@@ -113,6 +113,7 @@ final class ANOEL_Elements_Loader {
 			'animated-icon-list' => 'animated-icon-list',
 			'skew-carousel'      => 'skew-carousel',
 			'terms-dropdown'      => 'terms-dropdown.min',
+			'section-heading' => 'section-heading',
 		);
 
 		$styles_libs = array(
@@ -355,6 +356,8 @@ final class ANOEL_Elements_Loader {
 			'ANOEL_Animated_Icon_List',
 			'ANOEL_Vertical_Text_Slider',
 			'ANOEL_Skew_Carousel',
+			'ANOEL_Section_heading',
+			'ANOEL_Simple_Content',
 
 		);
 
