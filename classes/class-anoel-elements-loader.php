@@ -356,7 +356,7 @@ final class ANOEL_Elements_Loader {
 			'ANOEL_Animated_Icon_List',
 			'ANOEL_Vertical_Text_Slider',
 			'ANOEL_Skew_Carousel',
-			'ANOEL_Section_heading',
+			'ANOEL_Section_Heading',
 			'ANOEL_Simple_Content',
 
 		);
